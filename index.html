@@ -57,16 +57,16 @@
 
     <div id="timer-container" class="max-w-4xl mx-auto mb-4 text-center no-print">
         <div class="bg-white p-4 rounded-xl shadow-md inline-block border-2 border-teal-100">
-            <span class="text-gray-600 ml-2" data-ar="⏱️ الوقت المتبقي:" data-en="⏱️ Time Remaining:">️ الوقت المتبقي:</span>
+            <span class="text-gray-600 ml-2" data-ar="⏱️ الوقت المتبقي:" data-en="⏱️ Time Remaining:">⏱️ الوقت المتبقي:</span>
             <span id="timer" class="text-2xl font-bold text-teal-600 font-mono">75:00</span>
-            <span class="shuffle-badge" data-ar=" أسئلة عشوائية" data-en=" Random Questions">🔀 أسئلة عشوائية</span>
+            <span class="shuffle-badge" data-ar="🔀 أسئلة عشوائية" data-en="🔀 Random Questions">🔀 أسئلة عشوائية</span>
         </div>
     </div>
 
     <div class="max-w-4xl mx-auto mb-6 flex flex-wrap gap-3 justify-center no-print">
         <button onclick="toggleAnswers()" class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer" data-ar="👁️ إظهار / إخفاء الإجابات" data-en="👁️ Show / Hide Answers">👁️ إظهار / إخفاء الإجابات</button>
         <button onclick="window.print()" class="bg-gray-800 hover:bg-gray-900 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer" data-ar="🖨️ طباعة / PDF" data-en="🖨️ Print / PDF">🖨️ طباعة / PDF</button>
-        <button onclick="location.reload()" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer" data-ar=" إعادة خلط الأسئلة" data-en="🔀 Reshuffle Questions"> إعادة خلط الأسئلة</button>
+        <button onclick="reshuffleExam()" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer" data-ar="🔀 إعادة خلط الأسئلة" data-en="🔀 Reshuffle Questions">🔀 إعادة خلط الأسئلة</button>
     </div>
 
     <header class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md mb-8 border-r-4 border-teal-600">
@@ -74,21 +74,21 @@
             <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2" data-ar="🔄 رياضيات الصف الثاني عشر متقدم - Inspire" data-en="🔄 Grade 12 Advanced Math - Inspire">🔄 رياضيات الصف الثاني عشر متقدم - Inspire</h1>
             <h2 class="text-lg text-teal-600 font-semibold" data-ar="الدرس 7.4: الكسور الجزئية للتكامل" data-en="Lesson 7.4: Partial Fractions for Integration">الدرس 7.4: الكسور الجزئية للتكامل</h2>
             <p class="text-sm text-gray-600 mt-2" data-ar="مسائل حسابية: التفكيك، إيجاد الثوابت، التكامل، والتطبيقات" data-en="Calculation Problems: Decomposition, Finding Constants, Integration & Applications">مسائل حسابية: التفكيك، إيجاد الثوابت، التكامل، والتطبيقات</p>
-            <p class="text-xs text-orange-600 mt-2 font-semibold" data-ar="⚠️ ملاحظة: يتم خلط ترتيب الأسئلة والخيارات تلقائياً مع كل تحديث للصفحة" data-en="⚠️ Note: Questions and options are randomly shuffled on every page refresh">️ ملاحظة: يتم خلط ترتيب الأسئلة والخيارات تلقائياً مع كل تحديث للصفحة</p>
+            <p class="text-xs text-orange-600 mt-2 font-semibold" data-ar="⚠️ ملاحظة: يتم خلط ترتيب الأسئلة والخيارات تلقائياً مع كل تحديث للصفحة" data-en="⚠️ Note: Questions and options are randomly shuffled on every page refresh">⚠️ ملاحظة: يتم خلط ترتيب الأسئلة والخيارات تلقائياً مع كل تحديث للصفحة</p>
         </div>
         <div class="mt-4 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
             <span><span data-ar="📅 التاريخ:" data-en="📅 Date:">📅 التاريخ:</span> <input type="text" class="border-b border-gray-400 bg-transparent w-28 text-center"></span>
             <span><span data-ar="👤 الاسم:" data-en="👤 Name:">👤 الاسم:</span> <input type="text" id="studentName" class="border-b border-gray-400 bg-transparent w-32 text-center" placeholder="Enter name"></span>
-            <span><span data-ar=" الشعبة:" data-en="🏫 Class:">🏫 الشعبة:</span> <input type="text" id="studentClass" class="border-b border-gray-400 bg-transparent w-28 text-center" placeholder="Class"></span>
-            <span><span data-ar="⏱️ المدة: 75 دقيقة" data-en="️ Duration: 75 min">⏱️ المدة: 75 دقيقة</span></span>
-            <span><span data-ar=" المجموع: 100 درجة" data-en="📊 Total: 100 pts">📊 المجموع: 100 درجة</span></span>
+            <span><span data-ar="🏫 الشعبة:" data-en="🏫 Class:">🏫 الشعبة:</span> <input type="text" id="studentClass" class="border-b border-gray-400 bg-transparent w-28 text-center" placeholder="Class"></span>
+            <span><span data-ar="⏱️ المدة: 75 دقيقة" data-en="⏱️ Duration: 75 min">⏱️ المدة: 75 دقيقة</span></span>
+            <span><span data-ar="📊 المجموع: 100 درجة" data-en="📊 Total: 100 pts">📊 المجموع: 100 درجة</span></span>
         </div>
     </header>
 
     <main class="max-w-4xl mx-auto space-y-8" id="exam-content"></main>
 
     <div class="text-center no-print pb-8 mt-8">
-        <button onclick="gradeExam()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-lg px-10 py-4 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer" data-ar="📝 تسليم وتصحيح الامتحان" data-en="📝 Submit & Grade Exam"> تسليم وتصحيح الامتحان</button>
+        <button onclick="gradeExam()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-lg px-10 py-4 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer" data-ar="📝 تسليم وتصحيح الامتحان" data-en="📝 Submit & Grade Exam">📝 تسليم وتصحيح الامتحان</button>
     </div>
 
     <div id="results-panel" class="max-w-4xl mx-auto mt-8 bg-white p-8 rounded-2xl shadow-2xl border-t-4 border-emerald-500 hidden no-print">
@@ -114,7 +114,7 @@
             </div>
         </div>
         <div class="text-center mb-6">
-            <button id="sendEmailBtn" onclick="sendResultsToEmail()" class="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white text-lg px-8 py-3 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer" data-ar=" إرسال النتائج للمعلم" data-en=" Send Results to Teacher">📧 إرسال النتائج للمعلم</button>
+            <button id="sendEmailBtn" onclick="sendResultsToEmail()" class="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white text-lg px-8 py-3 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer" data-ar="📧 إرسال النتائج للمعلم" data-en="📧 Send Results to Teacher">📧 إرسال النتائج للمعلم</button>
             <p id="emailStatus" class="text-sm mt-2 text-center font-medium"></p>
         </div>
         <div class="flex gap-3 justify-center">
@@ -137,7 +137,7 @@ const originalExamData = {
                 { q: { ar: 'للتكامل <span class="math">∫ (x³ + 2x)/(x² + 1) dx</span>، الخطوة الأولى الصحيحة هي:', en: 'For the integral <span class="math">∫ (x³ + 2x)/(x² + 1) dx</span>, the correct first step is:' }, options: [{ ar: 'تطبيق الكسور الجزئية مباشرة', en: 'Apply partial fractions directly' }, { ar: 'إجراء القسمة الطويلة أولاً لأن درجة البسط ≥ درجة المقام', en: 'Perform long division first since numerator degree ≥ denominator degree' }, { ar: 'استخدام التعويض u = x² + 1', en: 'Use substitution u = x² + 1' }, { ar: 'التكامل بالتجزئة', en: 'Use integration by parts' }], correct: 1, answer: { ar: 'درجة البسط (3) ≥ درجة المقام (2)، لذا يجب إجراء القسمة الطويلة أولاً', en: 'Numerator degree (3) ≥ denominator degree (2), so long division must be done first' } },
                 { q: { ar: 'بعد إجراء القسمة الطويلة لـ <span class="math">(x³ + 2x)/(x² + 1)</span>، الناتج هو:', en: 'After long division of <span class="math">(x³ + 2x)/(x² + 1)</span>, the result is:' }, options: [{ ar: '<span class="math">x + x/(x²+1)</span>', en: '<span class="math">x + x/(x²+1)</span>' }, { ar: '<span class="math">x² + 2x</span>', en: '<span class="math">x² + 2x</span>' }, { ar: '<span class="math">x + 1/(x²+1)</span>', en: '<span class="math">x + 1/(x²+1)</span>' }, { ar: '<span class="math">x - x/(x²+1)</span>', en: '<span class="math">x - x/(x²+1)</span>' }], correct: 0, answer: { ar: 'x³ + 2x = x(x² + 1) + x، إذن الناتج = x + x/(x² + 1)', en: 'x³ + 2x = x(x² + 1) + x, so result = x + x/(x² + 1)' } },
                 { q: { ar: 'التفكيك الصحيح لـ <span class="math">(5x + 3)/[(x-1)(x+2)]</span> هو:', en: 'The correct decomposition of <span class="math">(5x + 3)/[(x-1)(x+2)]</span> is:' }, options: [{ ar: '<span class="math">A/(x-1) + B/(x+2)</span>', en: '<span class="math">A/(x-1) + B/(x+2)</span>' }, { ar: '<span class="math">(Ax+B)/(x-1) + C/(x+2)</span>', en: '<span class="math">(Ax+B)/(x-1) + C/(x+2)</span>' }, { ar: '<span class="math">A/(x-1)² + B/(x+2)</span>', en: '<span class="math">A/(x-1)² + B/(x+2)</span>' }, { ar: '<span class="math">A/(x-1) + B/(x+2)²</span>', en: '<span class="math">A/(x-1) + B/(x+2)²</span>' }], correct: 0, answer: { ar: 'لكل عامل خطي مميز (x-a)، نضع ثابت A في البسط: A/(x-a)', en: 'For each distinct linear factor (x-a), place constant A in numerator: A/(x-a)' } },
-                { q: { ar: 'التفكيك الصحيح لـ <span class="math">(3x² + 2)/(x² + 4)²</span> هو:', en: 'The correct decomposition of <span class="math">(3x² + 2)/(x² + 4)²</span> is:' }, options: [{ ar: '<span class="math">A/(x²+4) + B/(x²+4)²</span>', en: '<span class="math">A/(x²+4) + B/(x²+4)²</span>' }, { ar: '<span class="math">(Ax+B)/(x²+4) + (Cx+D)/(x²+4)²</span>', en: '<span class="math">(Ax+B)/(x²+4) + (Cx+D)/(x²+4)²</span>' }, { ar: '<span class="math">A/(x²+4) + (Bx+C)/(x²+4)²</span>', en: '<span class="math">A/(x²+4) + (Bx+C)/(x²+4)²</span>' }, { ar: '<span class="math">A/(x+2)² + B/(x-2)²</span>', en: '<span class="math">A/(x+2)² + B/(x-2)²</span>' }], correct: 2, answer: { ar: 'الرباعي (x²+4) غير قابل للتحليل ويتكرر مرتين', en: 'Quadratic (x²+4) is irreducible and repeated twice' } }
+                { q: { ar: 'التفكيك الصحيح لـ <span class="math">(3x² + 2)/(x² + 4)²</span> هو:', en: 'The correct decomposition of <span class="math">(3x² + 2)/(x² + 4)²</span> is:' }, options: [{ ar: '<span class="math">A/(x²+4) + B/(x²+4)²</span>', en: '<span class="math">A/(x²+4) + B/(x²+4)²</span>' }, { ar: '<span class="math">(Ax+B)/(x²+4) + (Cx+D)/(x²+4)²</span>', en: '<span class="math">(Ax+B)/(x²+4) + (Cx+D)/(x²+4)²</span>' }, { ar: '<span class="math">A/(x²+4) + (Bx+C)/(x²+4)²</span>', en: '<span class="math">A/(x²+4) + (Bx+C)/(x²+4)²</span>' }, { ar: '<span class="math">A/(x+2)² + B/(x-2)²</span>', en: '<span class="math">A/(x+2)² + B/(x-2)²</span>' }], correct: 2, answer: { ar: 'الرباعي (x²+4) غير قابل للتحليل ويتكرر مرتين، لذا نضع: بسط خطي (Bx+C) لكل قوة، وبسط ثابت A للقوة الأولى', en: 'Quadratic (x²+4) is irreducible and repeated twice, so we place: linear numerator (Bx+C) for each power, and constant A for first power' } }
             ]
         },
         {
@@ -147,17 +147,17 @@ const originalExamData = {
                 { q: { ar: 'باستخدام طريقة Heaviside، قيمة A في <span class="math">(7x - 1)/[(x-3)(x+1)] = A/(x-3) + B/(x+1)</span> هي:', en: 'Using Heaviside method, the value of A in <span class="math">(7x - 1)/[(x-3)(x+1)] = A/(x-3) + B/(x+1)</span> is:' }, options: [{ ar: '<span class="math">5</span>', en: '<span class="math">5</span>' }, { ar: '<span class="math">2</span>', en: '<span class="math">2</span>' }, { ar: '<span class="math">-2</span>', en: '<span class="math">-2</span>' }, { ar: '<span class="math">3</span>', en: '<span class="math">3</span>' }], correct: 0, answer: { ar: 'A = (7x-1)/(x+1) عند x=3 = (21-1)/(3+1) = 20/4 = 5', en: 'A = (7x-1)/(x+1) at x=3 = (21-1)/(3+1) = 20/4 = 5' } },
                 { q: { ar: 'قيمة B في المسألة السابقة هي:', en: 'The value of B in the previous problem is:' }, options: [{ ar: '<span class="math">5</span>', en: '<span class="math">5</span>' }, { ar: '<span class="math">2</span>', en: '<span class="math">2</span>' }, { ar: '<span class="math">-2</span>', en: '<span class="math">-2</span>' }, { ar: '<span class="math">3</span>', en: '<span class="math">3</span>' }], correct: 1, answer: { ar: 'B = (7x-1)/(x-3) عند x=-1 = (-7-1)/(-1-3) = -8/-4 = 2', en: 'B = (7x-1)/(x-3) at x=-1 = (-7-1)/(-1-3) = -8/-4 = 2' } },
                 { q: { ar: 'التكامل <span class="math">∫ (7x-1)/[(x-3)(x+1)] dx</span> يساوي:', en: 'The integral <span class="math">∫ (7x-1)/[(x-3)(x+1)] dx</span> equals:' }, options: [{ ar: '<span class="math">5 ln|x-3| + 2 ln|x+1| + C</span>', en: '<span class="math">5 ln|x-3| + 2 ln|x+1| + C</span>' }, { ar: '<span class="math">5 ln|x+1| + 2 ln|x-3| + C</span>', en: '<span class="math">5 ln|x+1| + 2 ln|x-3| + C</span>' }, { ar: '<span class="math">5/(x-3) + 2/(x+1) + C</span>', en: '<span class="math">5/(x-3) + 2/(x+1) + C</span>' }, { ar: '<span class="math">7 ln|x²-2x-3| + C</span>', en: '<span class="math">7 ln|x²-2x-3| + C</span>' }], correct: 0, answer: { ar: '∫[5/(x-3) + 2/(x+1)] dx = 5 ln|x-3| + 2 ln|x+1| + C', en: '∫[5/(x-3) + 2/(x+1)] dx = 5 ln|x-3| + 2 ln|x+1| + C' } },
-                { q: { ar: 'للتكامل <span class="math"> (3x + 5)/[x(x-2)(x+4)] dx</span>، قيمة A (عند x=0) هي:', en: 'For <span class="math">∫ (3x + 5)/[x(x-2)(x+4)] dx</span>, the value of A (at x=0) is:' }, options: [{ ar: '<span class="math">-5/8</span>', en: '<span class="math">-5/8</span>' }, { ar: '<span class="math">5/8</span>', en: '<span class="math">5/8</span>' }, { ar: '<span class="math">11/24</span>', en: '<span class="math">11/24</span>' }, { ar: '<span class="math">-11/24</span>', en: '<span class="math">-11/24</span>' }], correct: 0, answer: { ar: 'A = (3x+5)/[(x-2)(x+4)] عند x=0 = 5/[(-2)(4)] = 5/(-8) = -5/8', en: 'A = (3x+5)/[(x-2)(x+4)] at x=0 = 5/[(-2)(4)] = 5/(-8) = -5/8' } }
+                { q: { ar: 'للتكامل <span class="math">∫ (3x + 5)/[x(x-2)(x+4)] dx</span>، قيمة A (عند x=0) هي:', en: 'For <span class="math">∫ (3x + 5)/[x(x-2)(x+4)] dx</span>, the value of A (at x=0) is:' }, options: [{ ar: '<span class="math">-5/8</span>', en: '<span class="math">-5/8</span>' }, { ar: '<span class="math">5/8</span>', en: '<span class="math">5/8</span>' }, { ar: '<span class="math">11/24</span>', en: '<span class="math">11/24</span>' }, { ar: '<span class="math">-11/24</span>', en: '<span class="math">-11/24</span>' }], correct: 0, answer: { ar: 'A = (3x+5)/[(x-2)(x+4)] عند x=0 = 5/[(-2)(4)] = 5/(-8) = -5/8', en: 'A = (3x+5)/[(x-2)(x+4)] at x=0 = 5/[(-2)(4)] = 5/(-8) = -5/8' } }
             ]
         },
         {
             id: 'sec3',
             title: { ar: '🔹 الجزء الثالث: العوامل الخطية المتكررة', en: '🔹 Part 3: Repeated Linear Factors' },
             questions: [
-                { q: { ar: 'التفكيك الصحيح لـ <span class="math">(4x + 7)/(x-2)³</span> هو:', en: 'The correct decomposition of <span class="math">(4x + 7)/(x-2)³</span> is:' }, options: [{ ar: '<span class="math">A/(x-2) + B/(x-2)² + C/(x-2)³</span>', en: '<span class="math">A/(x-2) + B/(x-2)² + C/(x-2)³</span>' }, { ar: '<span class="math">A/(x-2)³</span> فقط', en: '<span class="math">A/(x-2)³</span> only' }, { ar: '<span class="math">(Ax²+Bx+C)/(x-2)³</span>', en: '<span class="math">(Ax²+Bx+C)/(x-2)³</span>' }, { ar: '<span class="math">A/(x-2) + B/(x-2)³</span>', en: '<span class="math">A/(x-2) + B/(x-2)³</span>' }], correct: 0, answer: { ar: 'العامل المتكرر (x-2)³ يتطلب 3 حدود', en: 'Repeated factor (x-2)³ requires 3 terms' } },
-                { q: { ar: 'للتفكيك <span class="math">(4x + 7)/(x-2)³ = A/(x-2) + B/(x-2)² + C/(x-2)³</span>، قيمة C هي:', en: 'For <span class="math">(4x + 7)/(x-2)³ = A/(x-2) + B/(x-2)² + C/(x-2)³</span>, the value of C is:' }, options: [{ ar: '<span class="math">15</span>', en: '<span class="math">15</span>' }, { ar: '<span class="math">4</span>', en: '<span class="math">4</span>' }, { ar: '<span class="math">0</span>', en: '<span class="math">0</span>' }, { ar: '<span class="math">7</span>', en: '<span class="math">7</span>' }], correct: 0, answer: { ar: 'بمساواة البسط: عند x=2: 8+7 = C → C = 15', en: 'Equating numerators: At x=2: 8+7 = C → C = 15' } },
+                { q: { ar: 'التفكيك الصحيح لـ <span class="math">(4x + 7)/(x-2)³</span> هو:', en: 'The correct decomposition of <span class="math">(4x + 7)/(x-2)³</span> is:' }, options: [{ ar: '<span class="math">A/(x-2) + B/(x-2)² + C/(x-2)³</span>', en: '<span class="math">A/(x-2) + B/(x-2)² + C/(x-2)³</span>' }, { ar: '<span class="math">A/(x-2)³</span> فقط', en: '<span class="math">A/(x-2)³</span> only' }, { ar: '<span class="math">(Ax²+Bx+C)/(x-2)³</span>', en: '<span class="math">(Ax²+Bx+C)/(x-2)³</span>' }, { ar: '<span class="math">A/(x-2) + B/(x-2)³</span>', en: '<span class="math">A/(x-2) + B/(x-2)³</span>' }], correct: 0, answer: { ar: 'العامل المتكرر (x-2)³ يتطلب 3 حدود: A/(x-2) + B/(x-2)² + C/(x-2)³', en: 'Repeated factor (x-2)³ requires 3 terms: A/(x-2) + B/(x-2)² + C/(x-2)³' } },
+                { q: { ar: 'للتفكيك <span class="math">(4x + 7)/(x-2)³ = A/(x-2) + B/(x-2)² + C/(x-2)³</span>، قيمة C هي:', en: 'For <span class="math">(4x + 7)/(x-2)³ = A/(x-2) + B/(x-2)² + C/(x-2)³</span>, the value of C is:' }, options: [{ ar: '<span class="math">15</span>', en: '<span class="math">15</span>' }, { ar: '<span class="math">4</span>', en: '<span class="math">4</span>' }, { ar: '<span class="math">0</span>', en: '<span class="math">0</span>' }, { ar: '<span class="math">7</span>', en: '<span class="math">7</span>' }], correct: 0, answer: { ar: 'بمساواة البسط: 4x + 7 = A(x-2)² + B(x-2) + C. عند x=2: 8+7 = C → C = 15', en: 'Equating numerators: 4x + 7 = A(x-2)² + B(x-2) + C. At x=2: 8+7 = C → C = 15' } },
                 { q: { ar: 'قيمة A في المسألة السابقة (بمقارنة معاملات x²):', en: 'The value of A in the previous problem (by comparing x² coefficients):' }, options: [{ ar: '<span class="math">0</span>', en: '<span class="math">0</span>' }, { ar: '<span class="math">4</span>', en: '<span class="math">4</span>' }, { ar: '<span class="math">15</span>', en: '<span class="math">15</span>' }, { ar: '<span class="math">7</span>', en: '<span class="math">7</span>' }], correct: 0, answer: { ar: 'معامل x² في الطرف الأيسر = 0، وفي الطرف الأيمن = A، إذن A = 0', en: 'Coefficient of x² on left side = 0, on right side = A, so A = 0' } },
-                { q: { ar: 'التكامل <span class="math">∫ (4x+7)/(x-2)³ dx</span> يساوي:', en: 'The integral <span class="math">∫ (4x+7)/(x-2)³ dx</span> equals:' }, options: [{ ar: '<span class="math">4/(x-2) - 15/[2(x-2)²] + C</span>', en: '<span class="math">4/(x-2) - 15/[2(x-2)²] + C</span>' }, { ar: '<span class="math">4 ln|x-2| - 15/[2(x-2)²] + C</span>', en: '<span class="math">4 ln|x-2| - 15/[2(x-2)²] + C</span>' }, { ar: '<span class="math">-4/(x-2)² + 15/(x-2)³ + C</span>', en: '<span class="math">-4/(x-2)² + 15/(x-2)³ + C</span>' }, { ar: '<span class="math">4/(x-2)² - 15/[2(x-2)²] + C</span>', en: '<span class="math">4/(x-2)² - 15/[2(x-2)²] + C</span>' }], correct: 0, answer: { ar: 'A=0, B=4, C=15 → ∫[4/(x-2)² + 15/(x-2)³] dx', en: 'A=0, B=4, C=15 → ∫[4/(x-2)² + 15/(x-2)³] dx' } }
+                { q: { ar: 'التكامل <span class="math">∫ (4x+7)/(x-2)³ dx</span> يساوي:', en: 'The integral <span class="math">∫ (4x+7)/(x-2)³ dx</span> equals:' }, options: [{ ar: '<span class="math">-4/(x-2) - 15/[2(x-2)²] + C</span>', en: '<span class="math">-4/(x-2) - 15/[2(x-2)²] + C</span>' }, { ar: '<span class="math">4 ln|x-2| - 15/[2(x-2)²] + C</span>', en: '<span class="math">4 ln|x-2| - 15/[2(x-2)²] + C</span>' }, { ar: '<span class="math">4/(x-2) - 15/[2(x-2)²] + C</span>', en: '<span class="math">4/(x-2) - 15/[2(x-2)²] + C</span>' }, { ar: '<span class="math">4/(x-2)² - 15/[2(x-2)²] + C</span>', en: '<span class="math">4/(x-2)² - 15/[2(x-2)²] + C</span>' }], correct: 0, answer: { ar: 'A=0, B=4, C=15 → ∫[4/(x-2)² + 15/(x-2)³] dx = -4/(x-2) - 15/[2(x-2)²] + C', en: 'A=0, B=4, C=15 → ∫[4/(x-2)² + 15/(x-2)³] dx = -4/(x-2) - 15/[2(x-2)²] + C' } }
             ]
         },
         {
@@ -235,6 +235,25 @@ function prepareShuffledExam() {
     
     console.log('✅ تم خلط الأسئلة والخيارات بنجاح');
     console.log('📋 الإجابات الصحيحة بعد الخلط:', correctAnswersMap);
+}
+
+// ==================== إعادة الخلط يدوياً ====================
+function reshuffleExam() {
+    prepareShuffledExam();
+    renderExam();
+    // مسح جميع الإجابات المحددة
+    document.querySelectorAll('input[type="radio"]:checked').forEach(r => r.checked = false);
+    // إخفاء لوحة النتائج إن كانت ظاهرة
+    document.getElementById('results-panel').classList.add('hidden');
+    // إزالة تلوين الأسئلة
+    document.querySelectorAll('.correct, .incorrect').forEach(el => {
+        el.classList.remove('correct', 'incorrect');
+    });
+    // إشعار للمستخدم
+    alert(currentLang === 'ar' 
+        ? '🔀 تم إعادة خلط الأسئلة والخيارات بنجاح!' 
+        : '🔀 Questions and options have been reshuffled successfully!');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ==================== متغيرات عامة ====================
@@ -417,9 +436,9 @@ function sendResultsToEmail() {
                         <td style="padding: 8px;">${studentClass}</td>
                     </tr>
                     <tr>
-                        <td style="padding: 8px; font-weight: bold; color: #0f766e;">${currentLang === 'ar' ? '📅 التاريخ:' : ' Date:'}</td>
+                        <td style="padding: 8px; font-weight: bold; color: #0f766e;">${currentLang === 'ar' ? '📅 التاريخ:' : '📅 Date:'}</td>
                         <td style="padding: 8px;">${date}</td>
-                        <td style="padding: 8px; font-weight: bold; color: #0f766e;">${currentLang === 'ar' ? ' التقدير:' : '🏆 Grade:'}</td>
+                        <td style="padding: 8px; font-weight: bold; color: #0f766e;">${currentLang === 'ar' ? '🏆 التقدير:' : '🏆 Grade:'}</td>
                         <td style="padding: 8px;">${badge}</td>
                     </tr>
                 </table>
@@ -563,7 +582,7 @@ function sendResultsToEmail() {
         .catch(err => {
             status.textContent = currentLang === 'ar' 
                 ? '❌ فشل الإرسال، حاول مرة أخرى' 
-                : ' Failed to send, try again';
+                : '❌ Failed to send, try again';
             status.style.color = '#dc2626';
             btn.disabled = false;
             btn.textContent = currentLang === 'ar' ? '📧 إعادة المحاولة' : '📧 Retry Send';
@@ -582,8 +601,8 @@ window.addEventListener('DOMContentLoaded', () => {
     // بدء المؤقت
     startTimer();
     
-    console.log(' تم خلط الأسئلة والخيارات عشوائياً!');
-    console.log(' خريطة الإجابات الصحيحة:', correctAnswersMap);
+    console.log('🔀 تم خلط الأسئلة والخيارات عشوائياً!');
+    console.log('📋 خريطة الإجابات الصحيحة:', correctAnswersMap);
 });
 </script>
 </body>
