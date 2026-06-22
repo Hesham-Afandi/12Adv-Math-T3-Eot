@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📘 Grade 12 Advanced Math - Calculus & Integration (Unit 1)</title>
+    <title>📘 Grade 12 Advanced Math - Integration (Inspire Program)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -47,7 +47,7 @@
     <div id="timer-container" class="max-w-4xl mx-auto mb-4 text-center no-print">
         <div class="bg-white p-4 rounded-xl shadow-md inline-block border-2 border-teal-100">
             <span class="text-gray-600 ml-2" data-ar="⏱️ الوقت المتبقي:" data-en="⏱️ Time Remaining:">⏱️ الوقت المتبقي:</span>
-            <span id="timer" class="text-2xl font-bold text-teal-600 font-mono">60:00</span>
+            <span id="timer" class="text-2xl font-bold text-teal-600 font-mono">75:00</span>
         </div>
     </div>
 
@@ -58,15 +58,15 @@
 
     <header class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md mb-8 border-r-4 border-teal-600">
         <div class="text-center">
-            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2" data-ar="📘 رياضيات الصف الثاني عشر متقدم - Inspire" data-en="📘 Grade 12 Advanced Mathematics - Inspire">📘 رياضيات الصف الثاني عشر متقدم - Inspire</h1>
-            <h2 class="text-lg text-teal-600 font-semibold" data-ar="الوحدة الأولى: التكامل وتطبيقاته" data-en="Unit 1: Integration & Applications">الوحدة الأولى: التكامل وتطبيقاته</h2>
-            <p class="text-sm text-gray-600 mt-2" data-ar="التكامل غير المحدود، المحدود، النظرية الأساسية، التعويض، المساحات والأحجام" data-en="Indefinite & Definite Integrals, FTC, Substitution, Areas & Volumes">التكامل غير المحدود، المحدود، النظرية الأساسية، التعويض، المساحات والأحجام</p>
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2" data-ar="📘 رياضيات الصف الثاني عشر متقدم - برنامج Inspire" data-en="📘 Grade 12 Advanced Math - Inspire Program">📘 رياضيات الصف الثاني عشر متقدم - برنامج Inspire</h1>
+            <h2 class="text-lg text-teal-600 font-semibold" data-ar="الوحدات 1-2: التكامل وتطبيقاته" data-en="Units 1-2: Integration & Applications">الوحدات 1-2: التكامل وتطبيقاته</h2>
+            <p class="text-sm text-gray-600 mt-2" data-ar="رمز سيجما، مجاميع ريمان، النظرية الأساسية، التعويض، المساحات والأحجام" data-en="Sigma Notation, Riemann Sums, FTC, Substitution, Areas & Volumes">رمز سيجما، مجاميع ريمان، النظرية الأساسية، التعويض، المساحات والأحجام</p>
         </div>
         <div class="mt-4 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
             <span><span data-ar="📅 التاريخ:" data-en="📅 Date:">📅 التاريخ:</span> <input type="text" class="border-b border-gray-400 bg-transparent w-28 text-center"></span>
             <span><span data-ar="👤 الاسم:" data-en="👤 Name:">👤 الاسم:</span> <input type="text" id="studentName" class="border-b border-gray-400 bg-transparent w-32 text-center" placeholder="Enter name"></span>
             <span><span data-ar="🏫 الشعبة:" data-en="🏫 Class:">🏫 الشعبة:</span> <input type="text" id="studentClass" class="border-b border-gray-400 bg-transparent w-28 text-center" placeholder="Class"></span>
-            <span><span data-ar="⏱️ المدة: 60 دقيقة" data-en="⏱️ Duration: 60 min">⏱️ المدة: 60 دقيقة</span></span>
+            <span><span data-ar="⏱️ المدة: 75 دقيقة" data-en="⏱️ Duration: 75 min">⏱️ المدة: 75 دقيقة</span></span>
             <span><span data-ar="📊 المجموع: 100 درجة" data-en="📊 Total: 100 pts">📊 المجموع: 100 درجة</span></span>
         </div>
     </header>
@@ -92,11 +92,11 @@
         <div class="bg-gray-50 p-6 rounded-xl mb-6">
             <h3 class="font-bold text-lg mb-4 text-gray-800" data-ar="📈 تفصيل الأداء حسب القسم:" data-en="📈 Performance Breakdown:">📈 تفصيل الأداء حسب القسم:</h3>
             <div class="space-y-3">
-                <div class="flex justify-between items-center"><span class="text-gray-700" data-ar="التكامل غير المحدود" data-en="Indefinite Integrals">التكامل غير المحدود</span><span id="sec1-score" class="font-bold text-teal-600">0/4</span></div>
+                <div class="flex justify-between items-center"><span class="text-gray-700" data-ar="رمز سيجما والمجاميع" data-en="Sigma Notation & Sums">رمز سيجما والمجاميع</span><span id="sec1-score" class="font-bold text-teal-600">0/4</span></div>
                 <div class="flex justify-between items-center"><span class="text-gray-700" data-ar="التكامل المحدود وخصائصه" data-en="Definite Integrals & Properties">التكامل المحدود وخصائصه</span><span id="sec2-score" class="font-bold text-teal-600">0/4</span></div>
                 <div class="flex justify-between items-center"><span class="text-gray-700" data-ar="النظرية الأساسية للتفاضل والتكامل" data-en="Fundamental Theorem of Calculus">النظرية الأساسية للتفاضل والتكامل</span><span id="sec3-score" class="font-bold text-teal-600">0/4</span></div>
                 <div class="flex justify-between items-center"><span class="text-gray-700" data-ar="التكامل بالتعويض" data-en="Integration by Substitution">التكامل بالتعويض</span><span id="sec4-score" class="font-bold text-teal-600">0/4</span></div>
-                <div class="flex justify-between items-center"><span class="text-gray-700" data-ar="التطبيقات (مساحات وأحجام)" data-en="Applications (Areas & Volumes)">التطبيقات (مساحات وأحجام)</span><span id="sec5-score" class="font-bold text-teal-600">0/4</span></div>
+                <div class="flex justify-between items-center"><span class="text-gray-700" data-ar="التطبيقات (المساحات والأحجام)" data-en="Applications (Areas & Volumes)">التطبيقات (المساحات والأحجام)</span><span id="sec5-score" class="font-bold text-teal-600">0/4</span></div>
             </div>
         </div>
         <div class="text-center mb-6">
@@ -109,7 +109,7 @@
     </div>
 
     <footer class="max-w-4xl mx-auto mt-10 mb-8 text-center text-gray-500 text-sm no-print">
-        © <span data-ar="الرياضيات للصف الثاني عشر متقدم - Inspire | الوحدة الأولى: التكامل" data-en="Grade 12 Advanced Math - Inspire | Unit 1: Integration">الرياضيات للصف الثاني عشر متقدم - Inspire | الوحدة الأولى: التكامل</span> | Mr. Mohammed Hesham
+        © <span data-ar="الرياضيات للصف 12 متقدم - Inspire | الوحدات 1-2" data-en="Grade 12 Advanced Math - Inspire | Units 1-2">الرياضيات للصف 12 متقدم - Inspire | الوحدات 1-2</span> | Mr. Mohammed Hesham
     </footer>
 
 <script>
@@ -117,59 +117,259 @@ const examData = {
     sections: [
         {
             id: 'sec1',
-            title: { ar: '🔹 الجزء الأول: التكامل غير المحدود', en: '🔹 Part 1: Indefinite Integrals' },
+            title: { ar: '🔹 الجزء الأول: رمز سيجما والمجاميع', en: '🔹 Part 1: Sigma Notation & Sums' },
             questions: [
-                { q: { ar: 'التكامل العام للدالة <span class="math">f(x) = 5x⁴</span> هو:', en: 'The general antiderivative of <span class="math">f(x) = 5x⁴</span> is:' }, options: [{ ar: '<span class="math">x⁵ + C</span>', en: '<span class="math">x⁵ + C</span>' }, { ar: '<span class="math">20x³ + C</span>', en: '<span class="math">20x³ + C</span>' }, { ar: '<span class="math">5x⁵ + C</span>', en: '<span class="math">5x⁵ + C</span>' }, { ar: '<span class="math">x⁴ + C</span>', en: '<span class="math">x⁴ + C</span>' }], correct: 0, answer: { ar: '∫5x⁴ dx = 5 · x⁵/5 + C = x⁵ + C', en: '∫5x⁴ dx = 5 · x⁵/5 + C = x⁵ + C' } },
-                { q: { ar: 'قيمة <span class="math">∫(3x² + 2x - 1) dx</span> تساوي:', en: 'The value of <span class="math">∫(3x² + 2x - 1) dx</span> equals:' }, options: [{ ar: '<span class="math">x³ + x² - x + C</span>', en: '<span class="math">x³ + x² - x + C</span>' }, { ar: '<span class="math">6x + 2 + C</span>', en: '<span class="math">6x + 2 + C</span>' }, { ar: '<span class="math">3x³ + 2x² - x + C</span>', en: '<span class="math">3x³ + 2x² - x + C</span>' }, { ar: '<span class="math">x³ + 2x² - x + C</span>', en: '<span class="math">x³ + 2x² - x + C</span>' }], correct: 0, answer: { ar: 'نكامل كل حد: x³ + x² - x + C', en: 'Integrate each term: x³ + x² - x + C' } },
-                { q: { ar: 'إذا كان <span class="math">∫f(x) dx = eˣ + C</span>، فإن <span class="math">f(x)</span> تساوي:', en: 'If <span class="math">∫f(x) dx = eˣ + C</span>, then <span class="math">f(x)</span> equals:' }, options: [{ ar: '<span class="math">-eˣ</span>', en: '<span class="math">-eˣ</span>' }, { ar: '<span class="math">eˣ</span>', en: '<span class="math">eˣ</span>' }, { ar: '<span class="math">xeˣ⁻¹</span>', en: '<span class="math">xeˣ⁻¹</span>' }, { ar: '<span class="math">1/x</span>', en: '<span class="math">1/x</span>' }], correct: 1, answer: { ar: 'بما أن مشتقة eˣ هي eˣ، إذن f(x) = eˣ', en: 'Since derivative of eˣ is eˣ, then f(x) = eˣ' } },
-                { q: { ar: 'التكامل <span class="math">∫(1/x) dx</span> يساوي:', en: 'The integral <span class="math">∫(1/x) dx</span> equals:' }, options: [{ ar: '<span class="math">ln|x| + C</span>', en: '<span class="math">ln|x| + C</span>' }, { ar: '<span class="math">-1/x² + C</span>', en: '<span class="math">-1/x² + C</span>' }, { ar: '<span class="math">x⁻¹ + C</span>', en: '<span class="math">x⁻¹ + C</span>' }, { ar: '<span class="math">0 + C</span>', en: '<span class="math">0 + C</span>' }], correct: 0, answer: { ar: '∫(1/x) dx = ln|x| + C (صيغة أساسية)', en: '∫(1/x) dx = ln|x| + C (basic formula)' } }
+                { 
+                    q: { ar: 'قيمة المجموع <span class="math">Σ(i=1 to 5) i²</span> تساوي:', en: 'The value of the sum <span class="math">Σ(i=1 to 5) i²</span> equals:' }, 
+                    options: [
+                        { ar: '15', en: '15' }, 
+                        { ar: '55', en: '55' }, 
+                        { ar: '30', en: '30' }, 
+                        { ar: '25', en: '25' }
+                    ], 
+                    correct: 1, 
+                    answer: { ar: '1² + 2² + 3² + 4² + 5² = 1 + 4 + 9 + 16 + 25 = 55', en: '1² + 2² + 3² + 4² + 5² = 1 + 4 + 9 + 16 + 25 = 55' } 
+                },
+                { 
+                    q: { ar: 'باستخدام صيغة غاوس، مجموع الأعداد من 1 إلى 100 يساوي:', en: 'Using Gauss formula, the sum of integers from 1 to 100 equals:' }, 
+                    options: [
+                        { ar: '5000', en: '5000' }, 
+                        { ar: '10100', en: '10100' }, 
+                        { ar: '5050', en: '5050' }, 
+                        { ar: '10000', en: '10000' }
+                    ], 
+                    correct: 2, 
+                    answer: { ar: 'Σi = n(n+1)/2 = 100(101)/2 = 5050', en: 'Σi = n(n+1)/2 = 100(101)/2 = 5050' } 
+                },
+                { 
+                    q: { ar: 'قيمة <span class="math">Σ(i=1 to n) C</span> حيث C ثابت تساوي:', en: 'The value of <span class="math">Σ(i=1 to n) C</span> where C is a constant equals:' }, 
+                    options: [
+                        { ar: '<span class="math">C</span>', en: '<span class="math">C</span>' }, 
+                        { ar: '<span class="math">Cn</span>', en: '<span class="math">Cn</span>' }, 
+                        { ar: '<span class="math">Cn²</span>', en: '<span class="math">Cn²</span>' }, 
+                        { ar: '<span class="math">C/n</span>', en: '<span class="math">C/n</span>' }
+                    ], 
+                    correct: 1, 
+                    answer: { ar: 'مجموع n من الثوابت C = nC', en: 'Sum of n copies of constant C = nC' } 
+                },
+                { 
+                    q: { ar: 'إذا كان <span class="math">Σ(i=1 to 4) aᵢ = 10</span> و <span class="math">Σ(i=1 to 4) bᵢ = 6</span>، فإن <span class="math">Σ(i=1 to 4) (2aᵢ - 3bᵢ)</span> =', en: 'If <span class="math">Σ(i=1 to 4) aᵢ = 10</span> and <span class="math">Σ(i=1 to 4) bᵢ = 6</span>, then <span class="math">Σ(i=1 to 4) (2aᵢ - 3bᵢ)</span> =' }, 
+                    options: [
+                        { ar: '2', en: '2' }, 
+                        { ar: '38', en: '38' }, 
+                        { ar: '4', en: '4' }, 
+                        { ar: '-2', en: '-2' }
+                    ], 
+                    correct: 0, 
+                    answer: { ar: '2(10) - 3(6) = 20 - 18 = 2 (خاصية الخطية)', en: '2(10) - 3(6) = 20 - 18 = 2 (linearity property)' } 
+                }
             ]
         },
         {
             id: 'sec2',
             title: { ar: '🔹 الجزء الثاني: التكامل المحدود وخصائصه', en: '🔹 Part 2: Definite Integrals & Properties' },
             questions: [
-                { q: { ar: 'قيمة <span class="math">∫₀² 4x dx</span> تساوي:', en: 'The value of <span class="math">∫₀² 4x dx</span> equals:' }, options: [{ ar: '8', en: '8' }, { ar: '4', en: '4' }, { ar: '16', en: '16' }, { ar: '2', en: '2' }], correct: 0, answer: { ar: '∫₀² 4x dx = [2x²]₀² = 2(4) - 0 = 8', en: '∫₀² 4x dx = [2x²]₀² = 2(4) - 0 = 8' } },
-                { q: { ar: 'إذا كان <span class="math">∫₁⁴ f(x) dx = 10</span> و <span class="math">∫₁² f(x) dx = 3</span>، فإن <span class="math">∫₂⁴ f(x) dx</span> =', en: 'If <span class="math">∫₁⁴ f(x) dx = 10</span> and <span class="math">∫₁² f(x) dx = 3</span>, then <span class="math">∫₂⁴ f(x) dx</span> =' }, options: [{ ar: '13', en: '13' }, { ar: '7', en: '7' }, { ar: '10', en: '10' }, { ar: '3', en: '3' }], correct: 1, answer: { ar: '∫₂⁴ = ∫₁⁴ - ∫₁² = 10 - 3 = 7', en: '∫₂⁴ = ∫₁⁴ - ∫₁² = 10 - 3 = 7' } },
-                { q: { ar: 'قيمة <span class="math">∫₋₃³ (x⁵ + x) dx</span> تساوي:', en: 'The value of <span class="math">∫₋₃³ (x⁵ + x) dx</span> equals:' }, options: [{ ar: '0 (دالة فردية)', en: '0 (odd function)' }, { ar: '<span class="math">2∫₀³ (x⁵+x)dx</span>', en: '<span class="math">2∫₀³ (x⁵+x)dx</span>' }, { ar: 'غير معرّف', en: 'Undefined' }, { ar: '6', en: '6' }], correct: 0, answer: { ar: 'الدالة فردية والفترة متناظرة حول الصفر → التكامل = 0', en: 'Odd function on symmetric interval → integral = 0' } },
-                { q: { ar: 'الخاصية التي تنص على <span class="math">∫ₐᵇ f(x) dx = -∫ᵇₐ f(x) dx</span> هي:', en: 'The property stating <span class="math">∫ₐᵇ f(x) dx = -∫ᵇₐ f(x) dx</span> is:' }, options: [{ ar: 'عكس الحدود', en: 'Reversal of Limits' }, { ar: 'الإضافية', en: 'Additivity' }, { ar: 'الخطية', en: 'Linearity' }, { ar: 'الثابت المضاعف', en: 'Constant Multiple' }], correct: 0, answer: { ar: 'عكس الحدود يغير إشارة التكامل', en: 'Reversing limits changes the sign of the integral' } }
+                { 
+                    q: { ar: 'قيمة <span class="math">∫₀² x² dx</span> باستخدام النظرية الأساسية تساوي:', en: 'The value of <span class="math">∫₀² x² dx</span> using the Fundamental Theorem equals:' }, 
+                    options: [
+                        { ar: '<span class="math">4</span>', en: '<span class="math">4</span>' }, 
+                        { ar: '<span class="math">8/3</span>', en: '<span class="math">8/3</span>' }, 
+                        { ar: '<span class="math">2</span>', en: '<span class="math">2</span>' }, 
+                        { ar: '<span class="math">8</span>', en: '<span class="math">8</span>' }
+                    ], 
+                    correct: 1, 
+                    answer: { ar: '[x³/3]₀² = (8/3) - (0/3) = 8/3', en: '[x³/3]₀² = (8/3) - (0/3) = 8/3' } 
+                },
+                { 
+                    q: { ar: 'إذا كان <span class="math">∫₀³ f(x) dx = 5</span> و <span class="math">∫₀¹ f(x) dx = 2</span>، فإن <span class="math">∫₁³ f(x) dx</span> =', en: 'If <span class="math">∫₀³ f(x) dx = 5</span> and <span class="math">∫₀¹ f(x) dx = 2</span>, then <span class="math">∫₁³ f(x) dx</span> =' }, 
+                    options: [
+                        { ar: '7', en: '7' }, 
+                        { ar: '3', en: '3' }, 
+                        { ar: '10', en: '10' }, 
+                        { ar: '2.5', en: '2.5' }
+                    ], 
+                    correct: 1, 
+                    answer: { ar: '∫₀³ = ∫₀¹ + ∫₁³ → 5 = 2 + ∫₁³ → ∫₁³ = 3', en: '∫₀³ = ∫₀¹ + ∫₁³ → 5 = 2 + ∫₁³ → ∫₁³ = 3' } 
+                },
+                { 
+                    q: { ar: 'قيمة <span class="math">∫₋₁¹ x³ dx</span> تساوي:', en: 'The value of <span class="math">∫₋₁¹ x³ dx</span> equals:' }, 
+                    options: [
+                        { ar: '<span class="math">0</span>', en: '<span class="math">0</span>' }, 
+                        { ar: '<span class="math">2</span>', en: '<span class="math">2</span>' }, 
+                        { ar: '<span class="math">-2</span>', en: '<span class="math">-2</span>' }, 
+                        { ar: '<span class="math">1/2</span>', en: '<span class="math">1/2</span>' }
+                    ], 
+                    correct: 0, 
+                    answer: { ar: 'x³ دالة فردية والفترة متناظرة حول الصفر → التكامل = 0', en: 'x³ is an odd function on symmetric interval → integral = 0' } 
+                },
+                { 
+                    q: { ar: 'الخاصية <span class="math">∫ₐᵇ f(x)dx = -∫ᵇₐ f(x)dx</span> تُعرف بـ:', en: 'The property <span class="math">∫ₐᵇ f(x)dx = -∫ᵇₐ f(x)dx</span> is known as:' }, 
+                    options: [
+                        { ar: 'عكس الحدود (Reversal of Limits)', en: 'Reversal of Limits' }, 
+                        { ar: 'الخطية (Linearity)', en: 'Linearity' }, 
+                        { ar: 'الإضافية (Additivity)', en: 'Additivity' }, 
+                        { ar: 'الثابت المضاعف (Constant Multiple)', en: 'Constant Multiple' }
+                    ], 
+                    correct: 0, 
+                    answer: { ar: 'عكس حدود التكامل يغير إشارة النتيجة', en: 'Reversing the limits of integration changes the sign' } 
+                }
             ]
         },
         {
             id: 'sec3',
             title: { ar: '🔹 الجزء الثالث: النظرية الأساسية للتفاضل والتكامل', en: '🔹 Part 3: Fundamental Theorem of Calculus' },
             questions: [
-                { q: { ar: 'إذا كان <span class="math">F(x) = ∫₀ˣ (t²+1) dt</span>، فإن <span class="math">F\'(x)</span> =', en: 'If <span class="math">F(x) = ∫₀ˣ (t²+1) dt</span>, then <span class="math">F\'(x)</span> =' }, options: [{ ar: '<span class="math">x²+1</span>', en: '<span class="math">x²+1</span>' }, { ar: '<span class="math">2x</span>', en: '<span class="math">2x</span>' }, { ar: '<span class="math">x³/3 + x</span>', en: '<span class="math">x³/3 + x</span>' }, { ar: '<span class="math">0</span>', en: '<span class="math">0</span>' }], correct: 0, answer: { ar: 'حسب FTC Part 1: F\'(x) = f(x) = x²+1', en: 'By FTC Part 1: F\'(x) = f(x) = x²+1' } },
-                { q: { ar: 'باستخدام FTC Part 2، قيمة <span class="math">∫₁³ 2x dx</span> =', en: 'Using FTC Part 2, <span class="math">∫₁³ 2x dx</span> =' }, options: [{ ar: '8', en: '8' }, { ar: '9', en: '9' }, { ar: '6', en: '6' }, { ar: '4', en: '4' }], correct: 0, answer: { ar: '[x²]₁³ = 9 - 1 = 8', en: '[x²]₁³ = 9 - 1 = 8' } },
-                { q: { ar: 'مشتقة <span class="math">G(x) = ∫ₓ² cos(t) dt</span> هي:', en: 'The derivative of <span class="math">G(x) = ∫ₓ² cos(t) dt</span> is:' }, options: [{ ar: '<span class="math">cos(x)</span>', en: '<span class="math">cos(x)</span>' }, { ar: '<span class="math">-cos(x)</span>', en: '<span class="math">-cos(x)</span>' }, { ar: '<span class="math">sin(x)</span>', en: '<span class="math">sin(x)</span>' }, { ar: '<span class="math">0</span>', en: '<span class="math">0</span>' }], correct: 1, answer: { ar: 'G\'(x) = -cos(x) (عكس الحدود يعطي سالب)', en: 'G\'(x) = -cos(x) (reversal gives negative)' } },
-                { q: { ar: 'إذا كان <span class="math">H(x) = ∫₀^{x²} eᵗ dt</span>، فإن <span class="math">H\'(x)</span> =', en: 'If <span class="math">H(x) = ∫₀^{x²} eᵗ dt</span>, then <span class="math">H\'(x)</span> =' }, options: [{ ar: '<span class="math">e^{x²}</span>', en: '<span class="math">e^{x²}</span>' }, { ar: '<span class="math">2x e^{x²}</span>', en: '<span class="math">2x e^{x²}</span>' }, { ar: '<span class="math">e^{2x}</span>', en: '<span class="math">e^{2x}</span>' }, { ar: '<span class="math">x e^{x²}</span>', en: '<span class="math">x e^{x²}</span>' }], correct: 1, answer: { ar: 'حسب Chain Rule + FTC: H\'(x) = e^{x²} · 2x', en: 'By Chain Rule + FTC: H\'(x) = e^{x²} · 2x' } }
+                { 
+                    q: { ar: 'إذا كان <span class="math">F(x) = ∫₀ˣ sin(t) dt</span>، فإن <span class="math">F\'(x)</span> =', en: 'If <span class="math">F(x) = ∫₀ˣ sin(t) dt</span>, then <span class="math">F\'(x)</span> =' }, 
+                    options: [
+                        { ar: '<span class="math">sin(x)</span>', en: '<span class="math">sin(x)</span>' }, 
+                        { ar: '<span class="math">cos(x)</span>', en: '<span class="math">cos(x)</span>' }, 
+                        { ar: '<span class="math">-cos(x)</span>', en: '<span class="math">-cos(x)</span>' }, 
+                        { ar: '<span class="math">0</span>', en: '<span class="math">0</span>' }
+                    ], 
+                    correct: 0, 
+                    answer: { ar: 'حسب FTC Part 1: مشتقة التكامل = الدالة الأصلية = sin(x)', en: 'By FTC Part 1: derivative of integral = original function = sin(x)' } 
+                },
+                { 
+                    q: { ar: 'مشتقة <span class="math">G(x) = ∫₁ˣ (t³ + 2t) dt</span> هي:', en: 'The derivative of <span class="math">G(x) = ∫₁ˣ (t³ + 2t) dt</span> is:' }, 
+                    options: [
+                        { ar: '<span class="math">3x² + 2</span>', en: '<span class="math">3x² + 2</span>' }, 
+                        { ar: '<span class="math">x³ + 2x</span>', en: '<span class="math">x³ + 2x</span>' }, 
+                        { ar: '<span class="math">x⁴/4 + x²</span>', en: '<span class="math">x⁴/4 + x²</span>' }, 
+                        { ar: '<span class="math">x³ + 2x + C</span>', en: '<span class="math">x³ + 2x + C</span>' }
+                    ], 
+                    correct: 1, 
+                    answer: { ar: 'بالتعويض المباشر بـ x في t³+2t → x³ + 2x', en: 'Substituting x directly for t: x³ + 2x' } 
+                },
+                { 
+                    q: { ar: 'إذا كان <span class="math">H(x) = ∫₀^{x²} eᵗ dt</span>، فإن <span class="math">H\'(x)</span> =', en: 'If <span class="math">H(x) = ∫₀^{x²} eᵗ dt</span>, then <span class="math">H\'(x)</span> =' }, 
+                    options: [
+                        { ar: '<span class="math">e^{x²}</span>', en: '<span class="math">e^{x²}</span>' }, 
+                        { ar: '<span class="math">2x · e^{x²}</span>', en: '<span class="math">2x · e^{x²}</span>' }, 
+                        { ar: '<span class="math">e^{2x}</span>', en: '<span class="math">e^{2x}</span>' }, 
+                        { ar: '<span class="math">x² · e^{x²}</span>', en: '<span class="math">x² · e^{x²}</span>' }
+                    ], 
+                    correct: 1, 
+                    answer: { ar: 'Chain Rule + FTC: H\'(x) = e^{x²} · d(x²)/dx = 2x·e^{x²}', en: 'Chain Rule + FTC: H\'(x) = e^{x²} · d(x²)/dx = 2x·e^{x²}' } 
+                },
+                { 
+                    q: { ar: 'قيمة <span class="math">∫₁³ (2x - 1) dx</span> =', en: 'The value of <span class="math">∫₁³ (2x - 1) dx</span> =' }, 
+                    options: [
+                        { ar: '<span class="math">8</span>', en: '<span class="math">8</span>' }, 
+                        { ar: '<span class="math">4</span>', en: '<span class="math">4</span>' }, 
+                        { ar: '<span class="math">6</span>', en: '<span class="math">6</span>' }, 
+                        { ar: '<span class="math">10</span>', en: '<span class="math">10</span>' }
+                    ], 
+                    correct: 2, 
+                    answer: { ar: '[x² - x]₁³ = (9-3) - (1-1) = 6 - 0 = 6', en: '[x² - x]₁³ = (9-3) - (1-1) = 6 - 0 = 6' } 
+                }
             ]
         },
         {
             id: 'sec4',
             title: { ar: '🔹 الجزء الرابع: التكامل بالتعويض', en: '🔹 Part 4: Integration by Substitution' },
             questions: [
-                { q: { ar: 'لحساب <span class="math">∫ 2x cos(x²) dx</span>، أفضل تعويض هو:', en: 'For <span class="math">∫ 2x cos(x²) dx</span>, the best substitution is:' }, options: [{ ar: '<span class="math">u = cos(x²)</span>', en: '<span class="math">u = cos(x²)</span>' }, { ar: '<span class="math">u = x²</span>', en: '<span class="math">u = x²</span>' }, { ar: '<span class="math">u = 2x</span>', en: '<span class="math">u = 2x</span>' }, { ar: '<span class="math">u = sin(x)</span>', en: '<span class="math">u = sin(x)</span>' }], correct: 1, answer: { ar: 'u = x² → du = 2x dx → ∫cos(u) du = sin(u) + C', en: 'u = x² → du = 2x dx → ∫cos(u) du = sin(u) + C' } },
-                { q: { ar: 'قيمة <span class="math">∫ x e^{x²} dx</span> تساوي:', en: 'The value of <span class="math">∫ x e^{x²} dx</span> equals:' }, options: [{ ar: '<span class="math">½ e^{x²} + C</span>', en: '<span class="math">½ e^{x²} + C</span>' }, { ar: '<span class="math">e^{x²} + C</span>', en: '<span class="math">e^{x²} + C</span>' }, { ar: '<span class="math">2 e^{x²} + C</span>', en: '<span class="math">2 e^{x²} + C</span>' }, { ar: '<span class="math">x e^{x²} + C</span>', en: '<span class="math">x e^{x²} + C</span>' }], correct: 0, answer: { ar: 'u = x², du = 2x dx → ½∫eᵘ du = ½e^{x²} + C', en: 'u = x², du = 2x dx → ½∫eᵘ du = ½e^{x²} + C' } },
-                { q: { ar: 'بعد التعويض <span class="math">u = x³+1</span>، التكامل <span class="math">∫ 3x²(x³+1)⁴ dx</span> يصبح:', en: 'After substitution <span class="math">u = x³+1</span>, the integral <span class="math">∫ 3x²(x³+1)⁴ dx</span> becomes:' }, options: [{ ar: '<span class="math">∫ u⁴ du</span>', en: '<span class="math">∫ u⁴ du</span>' }, { ar: '<span class="math">∫ 3u⁴ du</span>', en: '<span class="math">∫ 3u⁴ du</span>' }, { ar: '<span class="math">∫ u³ du</span>', en: '<span class="math">∫ u³ du</span>' }, { ar: '<span class="math">∫ 4u³ du</span>', en: '<span class="math">∫ 4u³ du</span>' }], correct: 0, answer: { ar: 'du = 3x² dx → ∫u⁴ du', en: 'du = 3x² dx → ∫u⁴ du' } },
-                { q: { ar: 'قيمة <span class="math">∫₀¹ 2x √(1+x²) dx</span> تساوي:', en: 'The value of <span class="math">∫₀¹ 2x √(1+x²) dx</span> equals:' }, options: [{ ar: '<span class="math">2(√2 - 1)</span>', en: '<span class="math">2(√2 - 1)</span>' }, { ar: '<span class="math">⅔(2√2 - 1)</span>', en: '<span class="math">⅔(2√2 - 1)</span>' }, { ar: '<span class="math">√2 - 1</span>', en: '<span class="math">√2 - 1</span>' }, { ar: '<span class="math">2√2</span>', en: '<span class="math">2√2</span>' }], correct: 1, answer: { ar: 'u = 1+x², du = 2x dx → ∫₁² u^{1/2} du = ⅔(2√2 - 1)', en: 'u = 1+x², du = 2x dx → ∫₁² u^{1/2} du = ⅔(2√2 - 1)' } }
+                { 
+                    q: { ar: 'التكامل <span class="math">∫ 2x·cos(x²) dx</span> يساوي:', en: 'The integral <span class="math">∫ 2x·cos(x²) dx</span> equals:' }, 
+                    options: [
+                        { ar: '<span class="math">sin(x²) + C</span>', en: '<span class="math">sin(x²) + C</span>' }, 
+                        { ar: '<span class="math">cos(x²) + C</span>', en: '<span class="math">cos(x²) + C</span>' }, 
+                        { ar: '<span class="math">-sin(x²) + C</span>', en: '<span class="math">-sin(x²) + C</span>' }, 
+                        { ar: '<span class="math">x²·sin(x²) + C</span>', en: '<span class="math">x²·sin(x²) + C</span>' }
+                    ], 
+                    correct: 0, 
+                    answer: { ar: 'u = x² → du = 2x dx → ∫cos(u) du = sin(u) + C = sin(x²) + C', en: 'u = x² → du = 2x dx → ∫cos(u) du = sin(u) + C = sin(x²) + C' } 
+                },
+                { 
+                    q: { ar: 'التكامل <span class="math">∫ eˣ/(1+eˣ) dx</span> يساوي:', en: 'The integral <span class="math">∫ eˣ/(1+eˣ) dx</span> equals:' }, 
+                    options: [
+                        { ar: '<span class="math">ln|1+eˣ| + C</span>', en: '<span class="math">ln|1+eˣ| + C</span>' }, 
+                        { ar: '<span class="math">1/(1+eˣ) + C</span>', en: '<span class="math">1/(1+eˣ) + C</span>' }, 
+                        { ar: '<span class="math">arctan(eˣ) + C</span>', en: '<span class="math">arctan(eˣ) + C</span>' }, 
+                        { ar: '<span class="math">eˣ/(1+eˣ)² + C</span>', en: '<span class="math">eˣ/(1+eˣ)² + C</span>' }
+                    ], 
+                    correct: 0, 
+                    answer: { ar: 'u = 1+eˣ → du = eˣ dx → ∫(1/u) du = ln|u| + C = ln|1+eˣ| + C', en: 'u = 1+eˣ → du = eˣ dx → ∫(1/u) du = ln|u| + C = ln|1+eˣ| + C' } 
+                },
+                { 
+                    q: { ar: 'التكامل <span class="math">∫ x²(x³+1)⁵ dx</span> يساوي:', en: 'The integral <span class="math">∫ x²(x³+1)⁵ dx</span> equals:' }, 
+                    options: [
+                        { ar: '<span class="math">(x³+1)⁶ + C</span>', en: '<span class="math">(x³+1)⁶ + C</span>' }, 
+                        { ar: '<span class="math">(1/6)(x³+1)⁶ + C</span>', en: '<span class="math">(1/6)(x³+1)⁶ + C</span>' }, 
+                        { ar: '<span class="math">(1/18)(x³+1)⁶ + C</span>', en: '<span class="math">(1/18)(x³+1)⁶ + C</span>' }, 
+                        { ar: '<span class="math">6(x³+1)⁶ + C</span>', en: '<span class="math">6(x³+1)⁶ + C</span>' }
+                    ], 
+                    correct: 2, 
+                    answer: { ar: 'u = x³+1 → du = 3x² dx → (1/3)∫u⁵ du = (1/3)(u⁶/6) + C = (1/18)(x³+1)⁶ + C', en: 'u = x³+1 → du = 3x² dx → (1/3)∫u⁵ du = (1/3)(u⁶/6) + C = (1/18)(x³+1)⁶ + C' } 
+                },
+                { 
+                    q: { ar: 'قيمة <span class="math">∫₀¹ x/(1+x²) dx</span> تساوي:', en: 'The value of <span class="math">∫₀¹ x/(1+x²) dx</span> equals:' }, 
+                    options: [
+                        { ar: '<span class="math">ln 2</span>', en: '<span class="math">ln 2</span>' }, 
+                        { ar: '<span class="math">(1/2) ln 2</span>', en: '<span class="math">(1/2) ln 2</span>' }, 
+                        { ar: '<span class="math">ln(3/2)</span>', en: '<span class="math">ln(3/2)</span>' }, 
+                        { ar: '<span class="math">(1/2) ln(3/2)</span>', en: '<span class="math">(1/2) ln(3/2)</span>' }
+                    ], 
+                    correct: 1, 
+                    answer: { ar: 'u = 1+x² → du = 2x dx → (1/2)∫₁² (1/u) du = (1/2)[ln u]₁² = (1/2) ln 2', en: 'u = 1+x² → du = 2x dx → (1/2)∫₁² (1/u) du = (1/2)[ln u]₁² = (1/2) ln 2' } 
+                }
             ]
         },
         {
             id: 'sec5',
             title: { ar: '🔹 الجزء الخامس: التطبيقات (المساحات والأحجام)', en: '🔹 Part 5: Applications (Areas & Volumes)' },
             questions: [
-                { q: { ar: 'المساحة بين <span class="math">y = x²</span> و <span class="math">y = x</span> من 0 إلى 1 هي:', en: 'The area between <span class="math">y = x²</span> and <span class="math">y = x</span> from 0 to 1 is:' }, options: [{ ar: '<span class="math">1/6</span>', en: '<span class="math">1/6</span>' }, { ar: '<span class="math">1/3</span>', en: '<span class="math">1/3</span>' }, { ar: '<span class="math">1/2</span>', en: '<span class="math">1/2</span>' }, { ar: '<span class="math">1</span>', en: '<span class="math">1</span>' }], correct: 0, answer: { ar: '∫₀¹ (x - x²) dx = [x²/2 - x³/3]₀¹ = 1/2 - 1/3 = 1/6', en: '∫₀¹ (x - x²) dx = [x²/2 - x³/3]₀¹ = 1/2 - 1/3 = 1/6' } },
-                { q: { ar: 'المساحة تحت <span class="math">y = √x</span> من 0 إلى 4 تساوي:', en: 'The area under <span class="math">y = √x</span> from 0 to 4 equals:' }, options: [{ ar: '<span class="math">16/3</span>', en: '<span class="math">16/3</span>' }, { ar: '8', en: '8' }, { ar: '4', en: '4' }, { ar: '<span class="math">32/3</span>', en: '<span class="math">32/3</span>' }], correct: 0, answer: { ar: '∫₀⁴ x^{1/2} dx = [⅔ x^{3/2}]₀⁴ = ⅔(8) = 16/3', en: '∫₀⁴ x^{1/2} dx = [⅔ x^{3/2}]₀⁴ = ⅔(8) = 16/3' } },
-                { q: { ar: 'حجم دوران <span class="math">y = √x</span> حول محور x من 0 إلى 4 هو:', en: 'The volume of rotating <span class="math">y = √x</span> around x-axis from 0 to 4 is:' }, options: [{ ar: '<span class="math">8π</span>', en: '<span class="math">8π</span>' }, { ar: '<span class="math">4π</span>', en: '<span class="math">4π</span>' }, { ar: '<span class="math">16π</span>', en: '<span class="math">16π</span>' }, { ar: '<span class="math">2π</span>', en: '<span class="math">2π</span>' }], correct: 0, answer: { ar: 'V = π∫₀⁴ (√x)² dx = π∫₀⁴ x dx = π[x²/2]₀⁴ = 8π', en: 'V = π∫₀⁴ (√x)² dx = π∫₀⁴ x dx = π[x²/2]₀⁴ = 8π' } },
-                { q: { ar: 'صيغة طريقة الغسالة (Washer) للدوران حول محور x هي:', en: 'The Washer method formula (rotation about x-axis) is:' }, options: [{ ar: '<span class="math">π ∫ [R(x)² - r(x)²] dx</span>', en: '<span class="math">π ∫ [R(x)² - r(x)²] dx</span>' }, { ar: '<span class="math">π ∫ [R(x) + r(x)] dx</span>', en: '<span class="math">π ∫ [R(x) + r(x)] dx</span>' }, { ar: '<span class="math">2π ∫ x f(x) dx</span>', en: '<span class="math">2π ∫ x f(x) dx</span>' }, { ar: '<span class="math">π ∫ [R(x) - r(x)]² dx</span>', en: '<span class="math">π ∫ [R(x) - r(x)]² dx</span>' }], correct: 0, answer: { ar: 'V = π∫[R² - r²] dx (فرق مربعي نصفي القطر)', en: 'V = π∫[R² - r²] dx (difference of squared radii)' } }
+                { 
+                    q: { ar: 'المساحة المحصورة بين <span class="math">y = x²</span> و <span class="math">y = x</span> من 0 إلى 1 تساوي:', en: 'The area between <span class="math">y = x²</span> and <span class="math">y = x</span> from 0 to 1 equals:' }, 
+                    options: [
+                        { ar: '<span class="math">1/6</span>', en: '<span class="math">1/6</span>' }, 
+                        { ar: '<span class="math">1/3</span>', en: '<span class="math">1/3</span>' }, 
+                        { ar: '<span class="math">1/2</span>', en: '<span class="math">1/2</span>' }, 
+                        { ar: '<span class="math">1</span>', en: '<span class="math">1</span>' }
+                    ], 
+                    correct: 0, 
+                    answer: { ar: '∫₀¹ (x - x²) dx = [x²/2 - x³/3]₀¹ = 1/2 - 1/3 = 1/6', en: '∫₀¹ (x - x²) dx = [x²/2 - x³/3]₀¹ = 1/2 - 1/3 = 1/6' } 
+                },
+                { 
+                    q: { ar: 'حجم الدوران للمنطقة تحت <span class="math">y = x²</span> حول محور x من 0 إلى 1 (طريقة القرص) =', en: 'The volume of rotating <span class="math">y = x²</span> around x-axis from 0 to 1 (Disk Method) =' }, 
+                    options: [
+                        { ar: '<span class="math">π/5</span>', en: '<span class="math">π/5</span>' }, 
+                        { ar: '<span class="math">π/3</span>', en: '<span class="math">π/3</span>' }, 
+                        { ar: '<span class="math">2π/5</span>', en: '<span class="math">2π/5</span>' }, 
+                        { ar: '<span class="math">π</span>', en: '<span class="math">π</span>' }
+                    ], 
+                    correct: 0, 
+                    answer: { ar: 'V = π∫₀¹ (x²)² dx = π∫₀¹ x⁴ dx = π[x⁵/5]₀¹ = π/5', en: 'V = π∫₀¹ (x²)² dx = π∫₀¹ x⁴ dx = π[x⁵/5]₀¹ = π/5' } 
+                },
+                { 
+                    q: { ar: 'صيغة طريقة القشور الأسطوانية (Shell Method) للدوران حول محور y هي:', en: 'The formula for Shell Method (rotation about y-axis) is:' }, 
+                    options: [
+                        { ar: '<span class="math">2π ∫ x·f(x) dx</span>', en: '<span class="math">2π ∫ x·f(x) dx</span>' }, 
+                        { ar: '<span class="math">π ∫ [f(x)]² dx</span>', en: '<span class="math">π ∫ [f(x)]² dx</span>' }, 
+                        { ar: '<span class="math">π ∫ [R(x)² - r(x)²] dx</span>', en: '<span class="math">π ∫ [R(x)² - r(x)²] dx</span>' }, 
+                        { ar: '<span class="math">∫ 2π·r·h dx</span>', en: '<span class="math">∫ 2π·r·h dx</span>' }
+                    ], 
+                    correct: 0, 
+                    answer: { ar: 'Shell Method: V = 2π ∫ x·f(x) dx (نصف القطر x، الارتفاع f(x))', en: 'Shell Method: V = 2π ∫ x·f(x) dx (radius x, height f(x))' } 
+                },
+                { 
+                    q: { ar: 'المساحة تحت المنحنى <span class="math">y = sin(x)</span> من 0 إلى π تساوي:', en: 'The area under <span class="math">y = sin(x)</span> from 0 to π equals:' }, 
+                    options: [
+                        { ar: '<span class="math">0</span>', en: '<span class="math">0</span>' }, 
+                        { ar: '<span class="math">1</span>', en: '<span class="math">1</span>' }, 
+                        { ar: '<span class="math">2</span>', en: '<span class="math">2</span>' }, 
+                        { ar: '<span class="math">π</span>', en: '<span class="math">π</span>' }
+                    ], 
+                    correct: 2, 
+                    answer: { ar: '∫₀π sin(x) dx = [-cos(x)]₀π = -cos(π) - (-cos(0)) = -(-1) - (-1) = 1 + 1 = 2', en: '∫₀π sin(x) dx = [-cos(x)]₀π = -cos(π) - (-cos(0)) = -(-1) - (-1) = 1 + 1 = 2' } 
+                }
             ]
         }
     ]
 };
 
 let currentLang = 'ar';
-let timeRemaining = 3600;
+let timeRemaining = 4500; // 75 minutes
 let timerInterval;
 
 function setLanguage(lang) {
@@ -250,7 +450,7 @@ function toggleAnswers() {
 
 function gradeExam() {
     let correctCount = 0;
-    const correctAnswersLetters = ['a','a','b','a','a','b','a','a','a','a','b','b','b','a','a','b','a','a','a','a'];
+    const correctAnswersLetters = ['b','c','b','a','b','b','a','a','a','b','b','c','a','a','c','b','a','a','a','c'];
     let sec1=0, sec2=0, sec3=0, sec4=0, sec5=0;
 
     for (let i = 1; i <= 20; i++) {
