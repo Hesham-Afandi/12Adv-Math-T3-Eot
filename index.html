@@ -1,565 +1,346 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grade 12 Advanced Math - Calculus & Integration Exam</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    body { font-family: 'Inter', sans-serif; }
-    .answer-box, #results-panel { display: none; }
-    .answers-visible .answer-box { display: block; }
-    .correct { background-color: #dcfce7 !important; border-color: #16a34a !important; }
-    .incorrect { background-color: #fee2e2 !important; border-color: #dc2626 !important; }
-    @media print {
-      .no-print { display: none !important; }
-      .shadow-lg, .shadow-md { box-shadow: none !important; }
-      body { background: white !important; color: black !important; }
-      .bg-gray-50, .bg-white, .bg-blue-50, .bg-green-50, #results-panel { background-color: white !important; }
-      input { border: 1px solid #ccc !important; background: transparent !important; }
-    }
-    .fade-in { animation: fadeIn 0.5s ease-in; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .math { font-family: 'Times New Roman', serif; letter-spacing: 0.5px; direction: ltr; display: inline-block; }
-    .timer-warning { color: #dc2626 !important; animation: pulse 1s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📘 Grade 12 Advanced Math - Calculus & Integration (Unit 1)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; }
+        body.en-mode { font-family: 'Inter', sans-serif; }
+        .correct { background-color: #dcfce7 !important; border-color: #16a34a !important; }
+        .incorrect { background-color: #fee2e2 !important; border-color: #dc2626 !important; }
+        .math { font-family: 'Times New Roman', serif; letter-spacing: 0.5px; direction: ltr; display: inline-block; font-style: italic; }
+        .timer-warning { color: #dc2626 !important; animation: pulse 1s infinite; }
+        @keyframes pulse { 50% { opacity: 0.7; } }
+        @media print { .no-print { display: none !important; } }
+        .success-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.875rem; }
+        .grade-excellent { background: #dcfce7; color: #166534; }
+        .grade-good { background: #fef3c7; color: #92400e; }
+        .grade-pass { background: #dbeafe; color: #1e40af; }
+        .grade-fail { background: #fee2e2; color: #991b1b; }
+        .lang-switch {
+            position: fixed; top: 16px; left: 16px; z-index: 100;
+            background: white; padding: 6px; border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: flex; gap: 4px;
+            border: 2px solid #0d9488;
+        }
+        [dir="ltr"] .lang-switch { left: auto; right: 16px; }
+        .lang-btn {
+            padding: 6px 14px; border-radius: 20px; cursor: pointer; font-weight: bold;
+            transition: all 0.3s; border: none; font-size: 0.875rem;
+            background: transparent; color: #6b7280;
+        }
+        .lang-btn.active { background: #0d9488; color: white; box-shadow: 0 2px 6px rgba(13,148,136,0.4); }
+        .lang-btn:hover:not(.active) { background: #f0fdfa; color: #0d9488; }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800 p-4 md:p-8 min-h-screen">
 
-  <!-- Timer -->
-  <div id="timer-container" class="max-w-4xl mx-auto mb-4 text-center no-print">
-    <div class="bg-white p-4 rounded-xl shadow-md inline-block border-2 border-indigo-100">
-      <span class="text-gray-600 mr-2">⏱️ Time Remaining:</span>
-      <span id="timer" class="text-2xl font-bold text-indigo-600 font-mono">30:00</span>
-    </div>
-  </div>
-
-  <!-- Controls -->
-  <div class="max-w-4xl mx-auto mb-6 flex flex-wrap gap-3 justify-center no-print">
-    <button onclick="toggleAnswers()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer">
-      👁️ Show / Hide Model Answers
-    </button>
-    <button onclick="window.print()" class="bg-gray-800 hover:bg-gray-900 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer">
-      🖨️ Print / Save as PDF
-    </button>
-  </div>
-
-  <!-- Header -->
-  <header class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md mb-8 border-l-4 border-indigo-600">
-    <div class="text-center">
-      <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">📘 Grade 12 Advanced Mathematics</h1>
-      <h2 class="text-lg text-indigo-600 font-semibold">Chapter 3: Integration & Applications</h2>
-    </div>
-    <div class="mt-4 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
-      <span>📅 Date: <input type="text" class="border-b border-gray-400 bg-transparent w-28 text-center"></span>
-      <span>👤 Name: <input type="text" id="studentName" class="border-b border-gray-400 bg-transparent w-32 text-center" placeholder="Enter Name"></span>
-      <span>⏱️ Duration: 30 min</span>
-      <span>📊 Total: 100 Marks</span>
-    </div>
-    <p class="mt-2 text-xs text-center text-gray-500">💡 Note: All questions are multiple-choice. Select the best answer.</p>
-  </header>
-
-  <main class="max-w-4xl mx-auto space-y-8">
-
-    <!-- Topic 1: Indefinite Integrals -->
-    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="1">
-      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 1: Indefinite Integrals & Antiderivatives</h2>
-      <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>1.</strong> What is the general antiderivative of <span class="math">f(x) = 5x⁴</span>?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q1" value="a" class="mr-2"> a) <span class="math">x⁵ + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q1" value="b" class="mr-2"> b) <span class="math">20x³ + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q1" value="c" class="mr-2"> c) <span class="math">5x⁵ + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q1" value="d" class="mr-2"> d) <span class="math">x⁴ + C</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>2.</strong> Evaluate: <span class="math">∫(3x² + 2x - 1) dx</span><br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q2" value="a" class="mr-2"> a) <span class="math">x³ + x² - x + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q2" value="b" class="mr-2"> b) <span class="math">6x + 2 + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q2" value="c" class="mr-2"> c) <span class="math">3x³ + 2x² - x + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q2" value="d" class="mr-2"> d) <span class="math">x³ + 2x² - x + C</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>3.</strong> If <span class="math">∫f(x) dx = eˣ + C</span>, what is <span class="math">f(x)</span>?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q3" value="a" class="mr-2"> a) <span class="math">-eˣ</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q3" value="b" class="mr-2"> b) <span class="math">eˣ</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q3" value="c" class="mr-2"> c) <span class="math">xeˣ⁻¹</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q3" value="d" class="mr-2"> d) <span class="math">1/x</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>4.</strong> The integral <span class="math">∫(1/x) dx</span> equals:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q4" value="a" class="mr-2"> a) <span class="math">ln|x| + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q4" value="b" class="mr-2"> b) <span class="math">-1/x² + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q4" value="c" class="mr-2"> c) <span class="math">x⁻¹ + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q4" value="d" class="mr-2"> d) <span class="math">0 + C</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- Topic 2: Definite Integrals -->
-    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="2">
-      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 2: Definite Integrals & Properties</h2>
-      <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>5.</strong> Evaluate: <span class="math">∫₀² 4x dx</span><br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q5" value="a" class="mr-2"> a) 8</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q5" value="b" class="mr-2"> b) 4</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q5" value="c" class="mr-2"> c) 16</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q5" value="d" class="mr-2"> d) 2</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a) 8</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>6.</strong> If <span class="math">∫₁⁴ f(x) dx = 10</span> and <span class="math">∫₁² f(x) dx = 3</span>, then <span class="math">∫₂⁴ f(x) dx = ?</span><br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q6" value="a" class="mr-2"> a) 13</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q6" value="b" class="mr-2"> b) 7</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q6" value="c" class="mr-2"> c) 10</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q6" value="d" class="mr-2"> d) 3</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b) 7</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>7.</strong> The value of <span class="math">∫₋₃³ (x⁵ + x) dx</span> is:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q7" value="a" class="mr-2"> a) 0 (odd function)</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q7" value="b" class="mr-2"> b) 2∫₀³ (x⁵+x)dx</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q7" value="c" class="mr-2"> c) Undefined</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q7" value="d" class="mr-2"> d) 6</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>8.</strong> Which property states <span class="math">∫ₐ f(x) dx = -∫ᵇₐ f(x) dx</span>?<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q8" value="a" class="mr-2"> a) Reversal of Limits</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q8" value="b" class="mr-2"> b) Additivity</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q8" value="c" class="mr-2"> c) Linearity</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q8" value="d" class="mr-2"> d) Constant Multiple</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- Topic 3: Fundamental Theorem of Calculus -->
-    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="3">
-      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 3: Fundamental Theorem of Calculus</h2>
-      <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>9.</strong> If <span class="math">F(x) = ∫₀ˣ (t²+1) dt</span>, then <span class="math">F'(x) = ?</span><br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q9" value="a" class="mr-2"> a) <span class="math">x²+1</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q9" value="b" class="mr-2"> b) <span class="math">2x</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q9" value="c" class="mr-2"> c) <span class="math">x³/3 + x</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q9" value="d" class="mr-2"> d) <span class="math">0</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>10.</strong> Using FTC Part 2, <span class="math">∫₁³ 2x dx = ?</span><br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q10" value="a" class="mr-2"> a) 8</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q10" value="b" class="mr-2"> b) 9</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q10" value="c" class="mr-2"> c) 6</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q10" value="d" class="mr-2"> d) 4</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a) 8</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>11.</strong> The derivative of <span class="math">G(x) = ∫ₓ² cos(t) dt</span> is:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q11" value="a" class="mr-2"> a) <span class="math">cos(x)</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q11" value="b" class="mr-2"> b) <span class="math">-cos(x)</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q11" value="c" class="mr-2"> c) <span class="math">sin(x)</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q11" value="d" class="mr-2"> d) <span class="math">0</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>12.</strong> If <span class="math">H(x) = ∫₀^{x²} eᵗ dt</span>, then <span class="math">H'(x) = ?</span><br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q12" value="a" class="mr-2"> a) <span class="math">e^{x²}</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q12" value="b" class="mr-2"> b) <span class="math">2x e^{x²}</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q12" value="c" class="mr-2"> c) <span class="math">e^{2x}</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q12" value="d" class="mr-2"> d) <span class="math">x e^{x²}</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- Topic 4: Integration by Substitution -->
-    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="4">
-      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 4: Integration by Substitution</h2>
-      <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>13.</strong> For <span class="math">∫ 2x cos(x²) dx</span>, the best substitution is:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q13" value="a" class="mr-2"> a) <span class="math">u = cos(x²)</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q13" value="b" class="mr-2"> b) <span class="math">u = x²</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q13" value="c" class="mr-2"> c) <span class="math">u = 2x</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q13" value="d" class="mr-2"> d) <span class="math">u = sin(x)</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>14.</strong> Evaluate: <span class="math">∫ x e^{x²} dx</span><br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q14" value="a" class="mr-2"> a) <span class="math">½ e^{x²} + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q14" value="b" class="mr-2"> b) <span class="math">e^{x²} + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q14" value="c" class="mr-2"> c) <span class="math">2 e^{x²} + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q14" value="d" class="mr-2"> d) <span class="math">x e^{x²} + C</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>15.</strong> After substitution <span class="math">u = x³+1</span>, <span class="math">∫ 3x²(x³+1)⁴ dx</span> becomes:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q15" value="a" class="mr-2"> a) <span class="math">∫ u⁴ du</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q15" value="b" class="mr-2"> b) <span class="math">∫ 3u⁴ du</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q15" value="c" class="mr-2"> c) <span class="math">∫ u³ du</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q15" value="d" class="mr-2"> d) <span class="math">∫ 4u³ du</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>16.</strong> Evaluate: <span class="math">∫₀¹ 2x √(1+x²) dx</span><br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q16" value="a" class="mr-2"> a) <span class="math">2(√2 - 1)</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q16" value="b" class="mr-2"> b) <span class="math">⅔(2√2 - 1)</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q16" value="c" class="mr-2"> c) <span class="math">√2 - 1</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q16" value="d" class="mr-2"> d) <span class="math">2√2</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b)</div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- Topic 5: Area Under/Between Curves -->
-    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="5">
-      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 5: Area Under & Between Curves</h2>
-      <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>17.</strong> The area between <span class="math">y = x²</span> and <span class="math">y = x</span> from 0 to 1 is:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q17" value="a" class="mr-2"> a) <span class="math">1/6</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q17" value="b" class="mr-2"> b) <span class="math">1/3</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q17" value="c" class="mr-2"> c) <span class="math">1/2</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q17" value="d" class="mr-2"> d) <span class="math">1</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>18.</strong> The area under <span class="math">y = √x</span> from 0 to 4 equals:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q18" value="a" class="mr-2"> a) 16/3</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q18" value="b" class="mr-2"> b) 8</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q18" value="c" class="mr-2"> c) 4</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q18" value="d" class="mr-2"> d) 32/3</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a) 16/3</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>19.</strong> To find the area between <span class="math">f(x)</span> and <span class="math">g(x)</span> where <span class="math">f(x) ≥ g(x)</span>, use:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q19" value="a" class="mr-2"> a) <span class="math">∫[f(x) - g(x)] dx</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q19" value="b" class="mr-2"> b) <span class="math">∫[f(x) + g(x)] dx</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q19" value="c" class="mr-2"> c) <span class="math">∫ f(x)g(x) dx</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q19" value="d" class="mr-2"> d) <span class="math">∫ f(x)/g(x) dx</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>20.</strong> Area bounded by <span class="math">y = 4 - x²</span> and the x-axis is:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q20" value="a" class="mr-2"> a) <span class="math">32/3</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q20" value="b" class="mr-2"> b) <span class="math">16/3</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q20" value="c" class="mr-2"> c) <span class="math">8</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q20" value="d" class="mr-2"> d) <span class="math">64/3</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- Topic 6: Volume of Revolution -->
-    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="6">
-      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 6: Volume of Revolution</h2>
-      <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>21.</strong> Volume rotating <span class="math">y = √x</span> around x-axis from 0 to 4 is:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q21" value="a" class="mr-2"> a) <span class="math">8π</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q21" value="b" class="mr-2"> b) <span class="math">4π</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q21" value="c" class="mr-2"> c) <span class="math">16π</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q21" value="d" class="mr-2"> d) <span class="math">2π</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a) 8π</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>22.</strong> Washer method formula (rotation about x-axis) is:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q22" value="a" class="mr-2"> a) <span class="math">π ∫ [R(x)² - r(x)²] dx</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q22" value="b" class="mr-2"> b) <span class="math">π ∫ [R(x) + r(x)] dx</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q22" value="c" class="mr-2"> c) <span class="math">2π ∫ x f(x) dx</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q22" value="d" class="mr-2"> d) <span class="math">π ∫ [R(x) - r(x)]² dx</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>23.</strong> Volume rotating region between <span class="math">y=x</span> and <span class="math">y=x²</span> around x-axis:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q23" value="a" class="mr-2"> a) <span class="math">π/30</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q23" value="b" class="mr-2"> b) <span class="math">2π/15</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q23" value="c" class="mr-2"> c) <span class="math">π/10</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q23" value="d" class="mr-2"> d) <span class="math">π/5</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: b) 2π/15</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>24.</strong> Shell method is most efficient when rotating around:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q24" value="a" class="mr-2"> a) Vertical axis with functions of x</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q24" value="b" class="mr-2"> b) Horizontal axis with functions of y</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q24" value="c" class="mr-2"> c) Origin only</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q24" value="d" class="mr-2"> d) Diagonal lines</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- Topic 7: Arc Length & Applications -->
-    <section class="bg-white p-6 rounded-xl shadow-lg" data-topic="7">
-      <h2 class="text-xl font-bold mb-4 text-indigo-700">🔹 Topic 7: Arc Length & Advanced Techniques</h2>
-      <ol class="space-y-4 text-sm">
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>25.</strong> Arc length formula for <span class="math">y = f(x)</span> from a to b:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q25" value="a" class="mr-2"> a) <span class="math">∫ₐ √(1 + [f'(x)]²) dx</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q25" value="b" class="mr-2"> b) <span class="math">∫ₐ f'(x) dx</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q25" value="c" class="mr-2"> c) <span class="math">∫ₐᵇ [f(x)]² dx</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q25" value="d" class="mr-2"> d) <span class="math">∫ₐᵇ √(1 + f(x)) dx</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>26.</strong> <span class="math">∫ (2x+3)/(x²+3x+2) dx</span> using partial fractions:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q26" value="a" class="mr-2"> a) <span class="math">ln|x+1| + ln|x+2| + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q26" value="b" class="mr-2"> b) <span class="math">½ ln|x²+3x+2| + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q26" value="c" class="mr-2"> c) <span class="math">ln|x+1| - ln|x+2| + C</span></label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q26" value="d" class="mr-2"> d) <span class="math">2 ln|x+1| + C</span></label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>27.</strong> Strategy for <span class="math">∫ sin³x cos²x dx</span>:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q27" value="a" class="mr-2"> a) Factor out sin x, convert sin² to 1-cos²</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q27" value="b" class="mr-2"> b) Factor out cos x, convert cos² to 1-sin²</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q27" value="c" class="mr-2"> c) Use substitution u = tan x</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q27" value="d" class="mr-2"> d) Apply integration by parts</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-        <li class="border-l-4 border-indigo-500 pl-4 py-2">
-          <strong>28.</strong> Trapezoidal rule approximation uses:<br>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q28" value="a" class="mr-2"> a) Linear segments (trapezoids)</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q28" value="b" class="mr-2"> b) Quadratic curves (parabolas)</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q28" value="c" class="mr-2"> c) Rectangles only</label>
-          <label class="ml-4 cursor-pointer"><input type="radio" name="q28" value="d" class="mr-2"> d) Random sampling</label>
-          <div class="answer-box text-green-700 mt-2 font-medium">✅ Answer: a)</div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- Submit & Email Buttons -->
-    <div class="text-center no-print pb-8">
-      <button onclick="gradeExam()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-lg px-10 py-4 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer">
-        📝 Submit & Auto-Grade Exam
-      </button>
-      <p class="text-xs text-gray-500 mt-3">Results appear instantly with detailed feedback.</p>
-      
-      <button id="sendEmailBtn" onclick="sendResultsToEmail()" class="mt-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-lg px-10 py-4 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer hidden">
-        📧 Send Results to Teacher
-      </button>
-      <p id="emailStatus" class="text-sm mt-2 text-center font-medium"></p>
+    <div class="lang-switch no-print">
+        <button class="lang-btn active" onclick="setLanguage('ar')" id="btn-ar">عربي</button>
+        <button class="lang-btn" onclick="setLanguage('en')" id="btn-en">EN</button>
     </div>
 
-  </main>
-
-  <!-- Results Panel -->
-  <div id="results-panel" class="max-w-4xl mx-auto mt-8 bg-white p-8 rounded-2xl shadow-2xl border-t-4 border-emerald-500 fade-in no-print">
-    <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">📊 Exam Results</h2>
-    
-    <div class="grid md:grid-cols-3 gap-4 mb-6">
-      <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-xl text-center">
-        <p class="text-sm text-gray-600">Student Name</p>
-        <p id="res-name" class="font-bold text-xl text-indigo-700">-</p>
-      </div>
-      <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-xl text-center">
-        <p class="text-sm text-gray-600">Date</p>
-        <p id="res-date" class="font-bold text-xl text-purple-700">-</p>
-      </div>
-      <div class="bg-gradient-to-br from-emerald-50 to-teal-50 p-4 rounded-xl text-center">
-        <p class="text-sm text-gray-600">Total Score</p>
-        <p id="res-total" class="font-bold text-3xl text-emerald-600">0 / 100</p>
-      </div>
+    <div id="timer-container" class="max-w-4xl mx-auto mb-4 text-center no-print">
+        <div class="bg-white p-4 rounded-xl shadow-md inline-block border-2 border-teal-100">
+            <span class="text-gray-600 ml-2" data-ar="⏱️ الوقت المتبقي:" data-en="⏱️ Time Remaining:">⏱️ الوقت المتبقي:</span>
+            <span id="timer" class="text-2xl font-bold text-teal-600 font-mono">60:00</span>
+        </div>
     </div>
 
-    <div class="bg-gray-50 p-6 rounded-xl mb-6">
-      <h3 class="font-bold text-lg mb-4">Score Breakdown by Topic:</h3>
-      <div id="breakdown" class="space-y-2"></div>
+    <div class="max-w-4xl mx-auto mb-6 flex flex-wrap gap-3 justify-center no-print">
+        <button onclick="toggleAnswers()" class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer" data-ar="👁️ إظهار / إخفاء الإجابات" data-en="👁️ Show / Hide Answers">👁️ إظهار / إخفاء الإجابات</button>
+        <button onclick="window.print()" class="bg-gray-800 hover:bg-gray-900 text-white px-5 py-2 rounded-lg font-medium transition shadow cursor-pointer" data-ar="🖨️ طباعة / PDF" data-en="🖨️ Print / PDF">🖨️ طباعة / PDF</button>
     </div>
 
-    <div class="bg-blue-50 p-4 rounded-xl text-sm text-blue-800 mb-6">
-      <strong>📌 Note:</strong> All questions are multiple-choice. Correct answers highlighted in green, incorrect in red. Review your selections before printing.
+    <header class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md mb-8 border-r-4 border-teal-600">
+        <div class="text-center">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2" data-ar="📘 رياضيات الصف الثاني عشر متقدم - Inspire" data-en="📘 Grade 12 Advanced Mathematics - Inspire">📘 رياضيات الصف الثاني عشر متقدم - Inspire</h1>
+            <h2 class="text-lg text-teal-600 font-semibold" data-ar="الوحدة الأولى: التكامل وتطبيقاته" data-en="Unit 1: Integration & Applications">الوحدة الأولى: التكامل وتطبيقاته</h2>
+            <p class="text-sm text-gray-600 mt-2" data-ar="التكامل غير المحدود، المحدود، النظرية الأساسية، التعويض، المساحات والأحجام" data-en="Indefinite & Definite Integrals, FTC, Substitution, Areas & Volumes">التكامل غير المحدود، المحدود، النظرية الأساسية، التعويض، المساحات والأحجام</p>
+        </div>
+        <div class="mt-4 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+            <span><span data-ar="📅 التاريخ:" data-en="📅 Date:">📅 التاريخ:</span> <input type="text" class="border-b border-gray-400 bg-transparent w-28 text-center"></span>
+            <span><span data-ar="👤 الاسم:" data-en="👤 Name:">👤 الاسم:</span> <input type="text" id="studentName" class="border-b border-gray-400 bg-transparent w-32 text-center" placeholder="Enter name"></span>
+            <span><span data-ar="🏫 الشعبة:" data-en="🏫 Class:">🏫 الشعبة:</span> <input type="text" id="studentClass" class="border-b border-gray-400 bg-transparent w-28 text-center" placeholder="Class"></span>
+            <span><span data-ar="⏱️ المدة: 60 دقيقة" data-en="⏱️ Duration: 60 min">⏱️ المدة: 60 دقيقة</span></span>
+            <span><span data-ar="📊 المجموع: 100 درجة" data-en="📊 Total: 100 pts">📊 المجموع: 100 درجة</span></span>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto space-y-8" id="exam-content"></main>
+
+    <div class="text-center no-print pb-8 mt-8">
+        <button onclick="gradeExam()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-lg px-10 py-4 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer" data-ar="📝 تسليم وتصحيح الامتحان" data-en="📝 Submit & Grade Exam">📝 تسليم وتصحيح الامتحان</button>
     </div>
 
-    <div class="flex gap-3 justify-center">
-      <button onclick="window.print()" class="bg-gray-700 hover:bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold cursor-pointer transition">
-        🖨️ Print Results
-      </button>
+    <div id="results-panel" class="max-w-4xl mx-auto mt-8 bg-white p-8 rounded-2xl shadow-2xl border-t-4 border-emerald-500 hidden no-print">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center" data-ar="📊 نتائج الامتحان" data-en="📊 Exam Results">📊 نتائج الامتحان</h2>
+        <div class="grid md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-blue-50 p-4 rounded-xl text-center"><p data-ar="اسم الطالب" data-en="Student Name">اسم الطالب</p><p id="res-name" class="font-bold text-xl text-teal-700">-</p></div>
+            <div class="bg-purple-50 p-4 rounded-xl text-center"><p data-ar="التاريخ" data-en="Date">التاريخ</p><p id="res-date" class="font-bold text-xl text-purple-700">-</p></div>
+            <div class="bg-emerald-50 p-4 rounded-xl text-center"><p data-ar="المجموع" data-en="Score">المجموع</p><p id="res-total" class="font-bold text-3xl text-emerald-600">0 / 100</p></div>
+        </div>
+        <div class="text-center mb-6">
+            <span id="success-badge" class="success-badge grade-excellent">-</span>
+            <p id="success-percent" class="text-4xl font-bold text-emerald-600 mt-2">100%</p>
+            <p class="text-sm text-gray-500" data-ar="نسبة النجاح" data-en="Success Rate">نسبة النجاح</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-xl mb-6">
+            <h3 class="font-bold text-lg mb-4 text-gray-800" data-ar="📈 تفصيل الأداء حسب القسم:" data-en="📈 Performance Breakdown:">📈 تفصيل الأداء حسب القسم:</h3>
+            <div class="space-y-3">
+                <div class="flex justify-between items-center"><span class="text-gray-700" data-ar="التكامل غير المحدود" data-en="Indefinite Integrals">التكامل غير المحدود</span><span id="sec1-score" class="font-bold text-teal-600">0/4</span></div>
+                <div class="flex justify-between items-center"><span class="text-gray-700" data-ar="التكامل المحدود وخصائصه" data-en="Definite Integrals & Properties">التكامل المحدود وخصائصه</span><span id="sec2-score" class="font-bold text-teal-600">0/4</span></div>
+                <div class="flex justify-between items-center"><span class="text-gray-700" data-ar="النظرية الأساسية للتفاضل والتكامل" data-en="Fundamental Theorem of Calculus">النظرية الأساسية للتفاضل والتكامل</span><span id="sec3-score" class="font-bold text-teal-600">0/4</span></div>
+                <div class="flex justify-between items-center"><span class="text-gray-700" data-ar="التكامل بالتعويض" data-en="Integration by Substitution">التكامل بالتعويض</span><span id="sec4-score" class="font-bold text-teal-600">0/4</span></div>
+                <div class="flex justify-between items-center"><span class="text-gray-700" data-ar="التطبيقات (مساحات وأحجام)" data-en="Applications (Areas & Volumes)">التطبيقات (مساحات وأحجام)</span><span id="sec5-score" class="font-bold text-teal-600">0/4</span></div>
+            </div>
+        </div>
+        <div class="text-center mb-6">
+            <button id="sendEmailBtn" onclick="sendResultsToEmail()" class="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white text-lg px-8 py-3 rounded-xl font-bold shadow-xl transition transform hover:scale-105 cursor-pointer" data-ar="📧 إرسال النتائج للمعلم" data-en="📧 Send Results to Teacher">📧 إرسال النتائج للمعلم</button>
+            <p id="emailStatus" class="text-sm mt-2 text-center font-medium"></p>
+        </div>
+        <div class="flex gap-3 justify-center">
+            <button onclick="window.print()" class="bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold" data-ar="🖨️ طباعة النتائج" data-en="🖨️ Print Results">🖨️ طباعة النتائج</button>
+        </div>
     </div>
-  </div>
 
-  <footer class="max-w-4xl mx-auto mt-10 mb-8 text-center text-gray-500 text-sm no-print">
-    © Grade 12 Advanced Math Exam | Integration & Applications | Auto-Grading System | Mr. Mohammed Hesham
-  </footer>
+    <footer class="max-w-4xl mx-auto mt-10 mb-8 text-center text-gray-500 text-sm no-print">
+        © <span data-ar="الرياضيات للصف الثاني عشر متقدم - Inspire | الوحدة الأولى: التكامل" data-en="Grade 12 Advanced Math - Inspire | Unit 1: Integration">الرياضيات للصف الثاني عشر متقدم - Inspire | الوحدة الأولى: التكامل</span> | Mr. Mohammed Hesham
+    </footer>
 
-  <script>
-    // ============================================================
-    // ⚠️ STEP 1: REPLACE WITH YOUR EMAILJS CREDENTIALS
-    // ============================================================
-    const PUBLIC_KEY = "Rb3Lq8tXaFmc5YHUH";
-    const SERVICE_ID = "service_w15m64i";
-    const TEMPLATE_ID = "template_5b0u2tq";
-    const TARGET_EMAIL = "mohammedhesham872@gmail.com";
-    // ============================================================
+<script>
+const examData = {
+    sections: [
+        {
+            id: 'sec1',
+            title: { ar: '🔹 الجزء الأول: التكامل غير المحدود', en: '🔹 Part 1: Indefinite Integrals' },
+            questions: [
+                { q: { ar: 'التكامل العام للدالة <span class="math">f(x) = 5x⁴</span> هو:', en: 'The general antiderivative of <span class="math">f(x) = 5x⁴</span> is:' }, options: [{ ar: '<span class="math">x⁵ + C</span>', en: '<span class="math">x⁵ + C</span>' }, { ar: '<span class="math">20x³ + C</span>', en: '<span class="math">20x³ + C</span>' }, { ar: '<span class="math">5x⁵ + C</span>', en: '<span class="math">5x⁵ + C</span>' }, { ar: '<span class="math">x⁴ + C</span>', en: '<span class="math">x⁴ + C</span>' }], correct: 0, answer: { ar: '∫5x⁴ dx = 5 · x⁵/5 + C = x⁵ + C', en: '∫5x⁴ dx = 5 · x⁵/5 + C = x⁵ + C' } },
+                { q: { ar: 'قيمة <span class="math">∫(3x² + 2x - 1) dx</span> تساوي:', en: 'The value of <span class="math">∫(3x² + 2x - 1) dx</span> equals:' }, options: [{ ar: '<span class="math">x³ + x² - x + C</span>', en: '<span class="math">x³ + x² - x + C</span>' }, { ar: '<span class="math">6x + 2 + C</span>', en: '<span class="math">6x + 2 + C</span>' }, { ar: '<span class="math">3x³ + 2x² - x + C</span>', en: '<span class="math">3x³ + 2x² - x + C</span>' }, { ar: '<span class="math">x³ + 2x² - x + C</span>', en: '<span class="math">x³ + 2x² - x + C</span>' }], correct: 0, answer: { ar: 'نكامل كل حد: x³ + x² - x + C', en: 'Integrate each term: x³ + x² - x + C' } },
+                { q: { ar: 'إذا كان <span class="math">∫f(x) dx = eˣ + C</span>، فإن <span class="math">f(x)</span> تساوي:', en: 'If <span class="math">∫f(x) dx = eˣ + C</span>, then <span class="math">f(x)</span> equals:' }, options: [{ ar: '<span class="math">-eˣ</span>', en: '<span class="math">-eˣ</span>' }, { ar: '<span class="math">eˣ</span>', en: '<span class="math">eˣ</span>' }, { ar: '<span class="math">xeˣ⁻¹</span>', en: '<span class="math">xeˣ⁻¹</span>' }, { ar: '<span class="math">1/x</span>', en: '<span class="math">1/x</span>' }], correct: 1, answer: { ar: 'بما أن مشتقة eˣ هي eˣ، إذن f(x) = eˣ', en: 'Since derivative of eˣ is eˣ, then f(x) = eˣ' } },
+                { q: { ar: 'التكامل <span class="math">∫(1/x) dx</span> يساوي:', en: 'The integral <span class="math">∫(1/x) dx</span> equals:' }, options: [{ ar: '<span class="math">ln|x| + C</span>', en: '<span class="math">ln|x| + C</span>' }, { ar: '<span class="math">-1/x² + C</span>', en: '<span class="math">-1/x² + C</span>' }, { ar: '<span class="math">x⁻¹ + C</span>', en: '<span class="math">x⁻¹ + C</span>' }, { ar: '<span class="math">0 + C</span>', en: '<span class="math">0 + C</span>' }], correct: 0, answer: { ar: '∫(1/x) dx = ln|x| + C (صيغة أساسية)', en: '∫(1/x) dx = ln|x| + C (basic formula)' } }
+            ]
+        },
+        {
+            id: 'sec2',
+            title: { ar: '🔹 الجزء الثاني: التكامل المحدود وخصائصه', en: '🔹 Part 2: Definite Integrals & Properties' },
+            questions: [
+                { q: { ar: 'قيمة <span class="math">∫₀² 4x dx</span> تساوي:', en: 'The value of <span class="math">∫₀² 4x dx</span> equals:' }, options: [{ ar: '8', en: '8' }, { ar: '4', en: '4' }, { ar: '16', en: '16' }, { ar: '2', en: '2' }], correct: 0, answer: { ar: '∫₀² 4x dx = [2x²]₀² = 2(4) - 0 = 8', en: '∫₀² 4x dx = [2x²]₀² = 2(4) - 0 = 8' } },
+                { q: { ar: 'إذا كان <span class="math">∫₁⁴ f(x) dx = 10</span> و <span class="math">∫₁² f(x) dx = 3</span>، فإن <span class="math">∫₂⁴ f(x) dx</span> =', en: 'If <span class="math">∫₁⁴ f(x) dx = 10</span> and <span class="math">∫₁² f(x) dx = 3</span>, then <span class="math">∫₂⁴ f(x) dx</span> =' }, options: [{ ar: '13', en: '13' }, { ar: '7', en: '7' }, { ar: '10', en: '10' }, { ar: '3', en: '3' }], correct: 1, answer: { ar: '∫₂⁴ = ∫₁⁴ - ∫₁² = 10 - 3 = 7', en: '∫₂⁴ = ∫₁⁴ - ∫₁² = 10 - 3 = 7' } },
+                { q: { ar: 'قيمة <span class="math">∫₋₃³ (x⁵ + x) dx</span> تساوي:', en: 'The value of <span class="math">∫₋₃³ (x⁵ + x) dx</span> equals:' }, options: [{ ar: '0 (دالة فردية)', en: '0 (odd function)' }, { ar: '<span class="math">2∫₀³ (x⁵+x)dx</span>', en: '<span class="math">2∫₀³ (x⁵+x)dx</span>' }, { ar: 'غير معرّف', en: 'Undefined' }, { ar: '6', en: '6' }], correct: 0, answer: { ar: 'الدالة فردية والفترة متناظرة حول الصفر → التكامل = 0', en: 'Odd function on symmetric interval → integral = 0' } },
+                { q: { ar: 'الخاصية التي تنص على <span class="math">∫ₐᵇ f(x) dx = -∫ᵇₐ f(x) dx</span> هي:', en: 'The property stating <span class="math">∫ₐᵇ f(x) dx = -∫ᵇₐ f(x) dx</span> is:' }, options: [{ ar: 'عكس الحدود', en: 'Reversal of Limits' }, { ar: 'الإضافية', en: 'Additivity' }, { ar: 'الخطية', en: 'Linearity' }, { ar: 'الثابت المضاعف', en: 'Constant Multiple' }], correct: 0, answer: { ar: 'عكس الحدود يغير إشارة التكامل', en: 'Reversing limits changes the sign of the integral' } }
+            ]
+        },
+        {
+            id: 'sec3',
+            title: { ar: '🔹 الجزء الثالث: النظرية الأساسية للتفاضل والتكامل', en: '🔹 Part 3: Fundamental Theorem of Calculus' },
+            questions: [
+                { q: { ar: 'إذا كان <span class="math">F(x) = ∫₀ˣ (t²+1) dt</span>، فإن <span class="math">F\'(x)</span> =', en: 'If <span class="math">F(x) = ∫₀ˣ (t²+1) dt</span>, then <span class="math">F\'(x)</span> =' }, options: [{ ar: '<span class="math">x²+1</span>', en: '<span class="math">x²+1</span>' }, { ar: '<span class="math">2x</span>', en: '<span class="math">2x</span>' }, { ar: '<span class="math">x³/3 + x</span>', en: '<span class="math">x³/3 + x</span>' }, { ar: '<span class="math">0</span>', en: '<span class="math">0</span>' }], correct: 0, answer: { ar: 'حسب FTC Part 1: F\'(x) = f(x) = x²+1', en: 'By FTC Part 1: F\'(x) = f(x) = x²+1' } },
+                { q: { ar: 'باستخدام FTC Part 2، قيمة <span class="math">∫₁³ 2x dx</span> =', en: 'Using FTC Part 2, <span class="math">∫₁³ 2x dx</span> =' }, options: [{ ar: '8', en: '8' }, { ar: '9', en: '9' }, { ar: '6', en: '6' }, { ar: '4', en: '4' }], correct: 0, answer: { ar: '[x²]₁³ = 9 - 1 = 8', en: '[x²]₁³ = 9 - 1 = 8' } },
+                { q: { ar: 'مشتقة <span class="math">G(x) = ∫ₓ² cos(t) dt</span> هي:', en: 'The derivative of <span class="math">G(x) = ∫ₓ² cos(t) dt</span> is:' }, options: [{ ar: '<span class="math">cos(x)</span>', en: '<span class="math">cos(x)</span>' }, { ar: '<span class="math">-cos(x)</span>', en: '<span class="math">-cos(x)</span>' }, { ar: '<span class="math">sin(x)</span>', en: '<span class="math">sin(x)</span>' }, { ar: '<span class="math">0</span>', en: '<span class="math">0</span>' }], correct: 1, answer: { ar: 'G\'(x) = -cos(x) (عكس الحدود يعطي سالب)', en: 'G\'(x) = -cos(x) (reversal gives negative)' } },
+                { q: { ar: 'إذا كان <span class="math">H(x) = ∫₀^{x²} eᵗ dt</span>، فإن <span class="math">H\'(x)</span> =', en: 'If <span class="math">H(x) = ∫₀^{x²} eᵗ dt</span>, then <span class="math">H\'(x)</span> =' }, options: [{ ar: '<span class="math">e^{x²}</span>', en: '<span class="math">e^{x²}</span>' }, { ar: '<span class="math">2x e^{x²}</span>', en: '<span class="math">2x e^{x²}</span>' }, { ar: '<span class="math">e^{2x}</span>', en: '<span class="math">e^{2x}</span>' }, { ar: '<span class="math">x e^{x²}</span>', en: '<span class="math">x e^{x²}</span>' }], correct: 1, answer: { ar: 'حسب Chain Rule + FTC: H\'(x) = e^{x²} · 2x', en: 'By Chain Rule + FTC: H\'(x) = e^{x²} · 2x' } }
+            ]
+        },
+        {
+            id: 'sec4',
+            title: { ar: '🔹 الجزء الرابع: التكامل بالتعويض', en: '🔹 Part 4: Integration by Substitution' },
+            questions: [
+                { q: { ar: 'لحساب <span class="math">∫ 2x cos(x²) dx</span>، أفضل تعويض هو:', en: 'For <span class="math">∫ 2x cos(x²) dx</span>, the best substitution is:' }, options: [{ ar: '<span class="math">u = cos(x²)</span>', en: '<span class="math">u = cos(x²)</span>' }, { ar: '<span class="math">u = x²</span>', en: '<span class="math">u = x²</span>' }, { ar: '<span class="math">u = 2x</span>', en: '<span class="math">u = 2x</span>' }, { ar: '<span class="math">u = sin(x)</span>', en: '<span class="math">u = sin(x)</span>' }], correct: 1, answer: { ar: 'u = x² → du = 2x dx → ∫cos(u) du = sin(u) + C', en: 'u = x² → du = 2x dx → ∫cos(u) du = sin(u) + C' } },
+                { q: { ar: 'قيمة <span class="math">∫ x e^{x²} dx</span> تساوي:', en: 'The value of <span class="math">∫ x e^{x²} dx</span> equals:' }, options: [{ ar: '<span class="math">½ e^{x²} + C</span>', en: '<span class="math">½ e^{x²} + C</span>' }, { ar: '<span class="math">e^{x²} + C</span>', en: '<span class="math">e^{x²} + C</span>' }, { ar: '<span class="math">2 e^{x²} + C</span>', en: '<span class="math">2 e^{x²} + C</span>' }, { ar: '<span class="math">x e^{x²} + C</span>', en: '<span class="math">x e^{x²} + C</span>' }], correct: 0, answer: { ar: 'u = x², du = 2x dx → ½∫eᵘ du = ½e^{x²} + C', en: 'u = x², du = 2x dx → ½∫eᵘ du = ½e^{x²} + C' } },
+                { q: { ar: 'بعد التعويض <span class="math">u = x³+1</span>، التكامل <span class="math">∫ 3x²(x³+1)⁴ dx</span> يصبح:', en: 'After substitution <span class="math">u = x³+1</span>, the integral <span class="math">∫ 3x²(x³+1)⁴ dx</span> becomes:' }, options: [{ ar: '<span class="math">∫ u⁴ du</span>', en: '<span class="math">∫ u⁴ du</span>' }, { ar: '<span class="math">∫ 3u⁴ du</span>', en: '<span class="math">∫ 3u⁴ du</span>' }, { ar: '<span class="math">∫ u³ du</span>', en: '<span class="math">∫ u³ du</span>' }, { ar: '<span class="math">∫ 4u³ du</span>', en: '<span class="math">∫ 4u³ du</span>' }], correct: 0, answer: { ar: 'du = 3x² dx → ∫u⁴ du', en: 'du = 3x² dx → ∫u⁴ du' } },
+                { q: { ar: 'قيمة <span class="math">∫₀¹ 2x √(1+x²) dx</span> تساوي:', en: 'The value of <span class="math">∫₀¹ 2x √(1+x²) dx</span> equals:' }, options: [{ ar: '<span class="math">2(√2 - 1)</span>', en: '<span class="math">2(√2 - 1)</span>' }, { ar: '<span class="math">⅔(2√2 - 1)</span>', en: '<span class="math">⅔(2√2 - 1)</span>' }, { ar: '<span class="math">√2 - 1</span>', en: '<span class="math">√2 - 1</span>' }, { ar: '<span class="math">2√2</span>', en: '<span class="math">2√2</span>' }], correct: 1, answer: { ar: 'u = 1+x², du = 2x dx → ∫₁² u^{1/2} du = ⅔(2√2 - 1)', en: 'u = 1+x², du = 2x dx → ∫₁² u^{1/2} du = ⅔(2√2 - 1)' } }
+            ]
+        },
+        {
+            id: 'sec5',
+            title: { ar: '🔹 الجزء الخامس: التطبيقات (المساحات والأحجام)', en: '🔹 Part 5: Applications (Areas & Volumes)' },
+            questions: [
+                { q: { ar: 'المساحة بين <span class="math">y = x²</span> و <span class="math">y = x</span> من 0 إلى 1 هي:', en: 'The area between <span class="math">y = x²</span> and <span class="math">y = x</span> from 0 to 1 is:' }, options: [{ ar: '<span class="math">1/6</span>', en: '<span class="math">1/6</span>' }, { ar: '<span class="math">1/3</span>', en: '<span class="math">1/3</span>' }, { ar: '<span class="math">1/2</span>', en: '<span class="math">1/2</span>' }, { ar: '<span class="math">1</span>', en: '<span class="math">1</span>' }], correct: 0, answer: { ar: '∫₀¹ (x - x²) dx = [x²/2 - x³/3]₀¹ = 1/2 - 1/3 = 1/6', en: '∫₀¹ (x - x²) dx = [x²/2 - x³/3]₀¹ = 1/2 - 1/3 = 1/6' } },
+                { q: { ar: 'المساحة تحت <span class="math">y = √x</span> من 0 إلى 4 تساوي:', en: 'The area under <span class="math">y = √x</span> from 0 to 4 equals:' }, options: [{ ar: '<span class="math">16/3</span>', en: '<span class="math">16/3</span>' }, { ar: '8', en: '8' }, { ar: '4', en: '4' }, { ar: '<span class="math">32/3</span>', en: '<span class="math">32/3</span>' }], correct: 0, answer: { ar: '∫₀⁴ x^{1/2} dx = [⅔ x^{3/2}]₀⁴ = ⅔(8) = 16/3', en: '∫₀⁴ x^{1/2} dx = [⅔ x^{3/2}]₀⁴ = ⅔(8) = 16/3' } },
+                { q: { ar: 'حجم دوران <span class="math">y = √x</span> حول محور x من 0 إلى 4 هو:', en: 'The volume of rotating <span class="math">y = √x</span> around x-axis from 0 to 4 is:' }, options: [{ ar: '<span class="math">8π</span>', en: '<span class="math">8π</span>' }, { ar: '<span class="math">4π</span>', en: '<span class="math">4π</span>' }, { ar: '<span class="math">16π</span>', en: '<span class="math">16π</span>' }, { ar: '<span class="math">2π</span>', en: '<span class="math">2π</span>' }], correct: 0, answer: { ar: 'V = π∫₀⁴ (√x)² dx = π∫₀⁴ x dx = π[x²/2]₀⁴ = 8π', en: 'V = π∫₀⁴ (√x)² dx = π∫₀⁴ x dx = π[x²/2]₀⁴ = 8π' } },
+                { q: { ar: 'صيغة طريقة الغسالة (Washer) للدوران حول محور x هي:', en: 'The Washer method formula (rotation about x-axis) is:' }, options: [{ ar: '<span class="math">π ∫ [R(x)² - r(x)²] dx</span>', en: '<span class="math">π ∫ [R(x)² - r(x)²] dx</span>' }, { ar: '<span class="math">π ∫ [R(x) + r(x)] dx</span>', en: '<span class="math">π ∫ [R(x) + r(x)] dx</span>' }, { ar: '<span class="math">2π ∫ x f(x) dx</span>', en: '<span class="math">2π ∫ x f(x) dx</span>' }, { ar: '<span class="math">π ∫ [R(x) - r(x)]² dx</span>', en: '<span class="math">π ∫ [R(x) - r(x)]² dx</span>' }], correct: 0, answer: { ar: 'V = π∫[R² - r²] dx (فرق مربعي نصفي القطر)', en: 'V = π∫[R² - r²] dx (difference of squared radii)' } }
+            ]
+        }
+    ]
+};
 
-    (function(){ emailjs.init(PUBLIC_KEY); })();
+let currentLang = 'ar';
+let timeRemaining = 3600;
+let timerInterval;
 
-    // Timer functionality
-    let timeRemaining = 1800; // 30 minutes in seconds
-    let timerInterval;
+function setLanguage(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.body.classList.toggle('en-mode', lang === 'en');
+    document.querySelectorAll('[data-ar][data-en]').forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+    });
+    renderExam();
+}
 
-    function startTimer() {
-      document.getElementById('timer-container').style.display = 'block';
-      timerInterval = setInterval(() => {
+function renderExam() {
+    const container = document.getElementById('exam-content');
+    const labels = {
+        ar: { option: ['أ', 'ب', 'ج', 'د'], answer: '✅ الإجابة:' },
+        en: { option: ['A', 'B', 'C', 'D'], answer: '✅ Answer:' }
+    };
+    const lbl = labels[currentLang];
+    const isRTL = currentLang === 'ar';
+
+    let html = '';
+    let globalIdx = 1;
+
+    examData.sections.forEach((section) => {
+        html += `<section class="bg-white p-6 rounded-xl shadow-lg">
+            <h2 class="text-xl font-bold mb-4 text-teal-700">${section.title[currentLang]}</h2>
+            <ol class="space-y-4 text-sm">`;
+
+        section.questions.forEach((q) => {
+            const borderSide = isRTL ? 'border-r-4 pr-4' : 'border-l-4 pl-4';
+            html += `<li class="${borderSide} border-teal-500 py-2" id="q-${globalIdx}">
+                <strong>${globalIdx}.</strong> ${q.q[currentLang]}<br>`;
+
+            q.options.forEach((opt, oIdx) => {
+                const radioSide = isRTL ? 'mr-4 ml-2' : 'ml-4 mr-2';
+                html += `<label class="cursor-pointer block mt-1 ${isRTL ? 'mr-4' : 'ml-4'}">
+                    <input type="radio" name="q${globalIdx}" value="${String.fromCharCode(97 + oIdx)}" class="${radioSide}">
+                    ${lbl.option[oIdx]}) ${opt[currentLang]}
+                </label>`;
+            });
+
+            html += `<div class="answer-box text-green-700 mt-2 font-medium hidden">
+                ${lbl.answer} ${lbl.option[q.correct]}) ${q.options[q.correct][currentLang]} — ${q.answer[currentLang]}
+            </div></li>`;
+            globalIdx++;
+        });
+
+        html += `</ol></section>`;
+    });
+
+    container.innerHTML = html;
+}
+
+function startTimer() {
+    document.getElementById('timer-container').style.display = 'block';
+    timerInterval = setInterval(() => {
         timeRemaining--;
         const minutes = Math.floor(timeRemaining / 60);
         const seconds = timeRemaining % 60;
         const timerEl = document.getElementById('timer');
         timerEl.textContent = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-        
-        if (timeRemaining <= 300) {
-          timerEl.classList.add('timer-warning');
-        }
-        
+        if (timeRemaining <= 300) timerEl.classList.add('timer-warning');
         if (timeRemaining <= 0) {
-          clearInterval(timerInterval);
-          alert("Time's up! Your exam will be submitted automatically.");
-          gradeExam();
+            clearInterval(timerInterval);
+            alert(currentLang === 'ar' ? "انتهى الوقت! سيتم تسليم الامتحان تلقائياً." : "Time's up!");
+            gradeExam();
         }
-      }, 1000);
-    }
+    }, 1000);
+}
 
-    function toggleAnswers() {
-      document.body.classList.toggle('answers-visible');
-    }
+function toggleAnswers() {
+    document.querySelectorAll('.answer-box').forEach(el => el.classList.toggle('hidden'));
+}
 
-    // Fisher-Yates shuffle for random ordering
-    function shuffleArray(array) {
-      const newArray = [...array];
-      for (let i = newArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-      }
-      return newArray;
-    }
+function gradeExam() {
+    let correctCount = 0;
+    const correctAnswersLetters = ['a','a','b','a','a','b','a','a','a','a','b','b','b','a','a','b','a','a','a','a'];
+    let sec1=0, sec2=0, sec3=0, sec4=0, sec5=0;
 
-    // Shuffle questions within each topic section on page load
-    function shuffleQuestions() {
-      const sections = document.querySelectorAll('main section ol');
-      sections.forEach(ol => {
-        const items = Array.from(ol.children);
-        const shuffled = shuffleArray(items);
-        shuffled.forEach(item => ol.appendChild(item));
-      });
-    }
-
-    function gradeExam() {
-      clearInterval(timerInterval);
-      const name = document.getElementById('studentName').value || 'Student';
-      const date = document.querySelector('input[type="text"]').value || new Date().toLocaleDateString();
-      let total = 0;
-      const breakdown = [];
-
-      // Correct answers for 28 questions
-      const correctAnswers = [
-        'a','a','b','a', // Topic 1
-        'a','b','a','a', // Topic 2
-        'a','a','b','b', // Topic 3
-        'b','a','a','b', // Topic 4
-        'a','a','a','a', // Topic 5
-        'a','a','b','a', // Topic 6
-        'a','a','a','a'  // Topic 7
-      ];
-
-      let topicScores = [0,0,0,0,0,0,0];
-      const topicNames = [
-        "Indefinite Integrals & Antiderivatives",
-        "Definite Integrals & Properties",
-        "Fundamental Theorem of Calculus",
-        "Integration by Substitution",
-        "Area Under & Between Curves",
-        "Volume of Revolution",
-        "Arc Length & Advanced Techniques"
-      ];
-
-      for(let i=1; i<=28; i++){
+    for (let i = 1; i <= 20; i++) {
         const selected = document.querySelector(`input[name="q${i}"]:checked`);
-        const match = selected && selected.value === correctAnswers[i-1];
-        if(match) {
-          total += 3.57; // 100/28 ≈ 3.57 per question
-          topicScores[Math.floor((i-1)/4)] += 3.57;
+        const li = document.getElementById(`q-${i}`);
+        const isCorrect = selected && selected.value === correctAnswersLetters[i-1];
+
+        if (isCorrect) {
+            correctCount++;
+            li.classList.add('correct');
+            li.classList.remove('incorrect');
+            if (i <= 4) sec1++;
+            else if (i <= 8) sec2++;
+            else if (i <= 12) sec3++;
+            else if (i <= 16) sec4++;
+            else sec5++;
+        } else {
+            li.classList.add('incorrect');
+            li.classList.remove('correct');
         }
-        const parent = document.querySelector(`input[name="q${i}"]`).closest('li');
-        parent.classList.add(match ? 'correct' : 'incorrect');
-      }
-
-      total = Math.round(total);
-      topicScores.forEach((score, idx) => {
-        breakdown.push(`<div class="flex justify-between p-2 bg-white rounded"><span>${topicNames[idx]}</span><span class="font-bold text-indigo-700">${Math.round(score)}/14</span></div>`);
-      });
-
-      document.getElementById('res-name').textContent = name;
-      document.getElementById('res-date').textContent = date;
-      document.getElementById('res-total').textContent = `${total} / 100`;
-      document.getElementById('breakdown').innerHTML = breakdown.join('');
-      
-      const panel = document.getElementById('results-panel');
-      panel.style.display = 'block';
-      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      
-      document.getElementById('sendEmailBtn').classList.remove('hidden');
     }
 
-    function sendResultsToEmail() {
-      const btn = document.getElementById('sendEmailBtn');
-      const status = document.getElementById('emailStatus');
-      btn.disabled = true;
-      btn.textContent = '⏳ Sending...';
+    const score = (correctCount / 20) * 100;
+    const successRate = Math.round(score);
 
-      const name = document.getElementById('studentName').value || 'N/A';
-      const date = document.querySelector('input[type="text"]').value || new Date().toLocaleDateString();
-      const score = document.getElementById('res-total').textContent;
+    document.getElementById('res-total').textContent = `${Math.round(score)} / 100`;
+    document.getElementById('res-name').textContent = document.getElementById('studentName').value || (currentLang === 'ar' ? 'طالب' : 'Student');
+    document.getElementById('res-date').textContent = new Date().toLocaleDateString(currentLang === 'ar' ? 'ar-AE' : 'en-US');
+    document.getElementById('sec1-score').textContent = `${sec1}/4`;
+    document.getElementById('sec2-score').textContent = `${sec2}/4`;
+    document.getElementById('sec3-score').textContent = `${sec3}/4`;
+    document.getElementById('sec4-score').textContent = `${sec4}/4`;
+    document.getElementById('sec5-score').textContent = `${sec5}/4`;
 
-      let answersHTML = `<table style="border:1px solid #e5e7eb; border-collapse:collapse; width:100%; font-family:Arial; font-size:12px;">
-        <tr style="background:#4F46E5; color:white;"><th style="border:1px solid #e5e7eb; padding:8px;">Q#</th><th style="border:1px solid #e5e7eb; padding:8px;">Topic</th><th style="border:1px solid #e5e7eb; padding:8px;">Selected</th><th style="border:1px solid #e5e7eb; padding:8px;">Status</th></tr>`;
-      
-      const correctAnswers = ['a','a','b','a','a','b','a','a','a','a','b','b','b','a','a','b','a','a','a','a','a','a','b','a','a','a','a','a'];
-      const topics = ["Integrals","Integrals","Integrals","Integrals","Definite","Definite","Definite","Definite","FTC","FTC","FTC","FTC","Substitution","Substitution","Substitution","Substitution","Area","Area","Area","Area","Volume","Volume","Volume","Volume","Arc/Adv","Arc/Adv","Arc/Adv","Arc/Adv"];
-      
-      for(let i=1; i<=28; i++) {
-        const sel = document.querySelector(`input[name="q${i}"]:checked`);
-        const isCorrect = sel && sel.value === correctAnswers[i-1];
-        answersHTML += `<tr><td style="border:1px solid #e5e7eb; padding:6px;">${i}</td><td style="border:1px solid #e5e7eb; padding:6px;">${topics[i-1]}</td><td style="border:1px solid #e5e7eb; padding:6px;">${sel ? sel.value.toUpperCase() : '-'}</td><td style="border:1px solid #e5e7eb; padding:6px; color:${isCorrect ? 'green' : 'red'}">${isCorrect ? '✅' : '❌'}</td></tr>`;
-      }
-      answersHTML += '</table>';
+    const badge = document.getElementById('success-badge');
+    document.getElementById('success-percent').textContent = `${successRate}%`;
 
-      const templateParams = {
-        to_email: TARGET_EMAIL,
-        student_name: name,
-        exam_date: date,
-        total_score: score,
-        answers_table: answersHTML
-      };
-
-      emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
-        .then(() => {
-          status.textContent = '✅ Sent successfully! Check your Gmail.';
-          status.style.color = '#059669';
-          btn.textContent = '✓ Sent';
-        })
-        .catch(err => {
-          status.textContent = '❌ Failed. Check console or setup.';
-          status.style.color = '#dc2626';
-          btn.disabled = false;
-          btn.textContent = '📧 Retry Send';
-          console.error('EmailJS Error:', err);
-        });
+    if (currentLang === 'ar') {
+        if (successRate >= 90) { badge.textContent = 'ممتاز'; badge.className = 'success-badge grade-excellent'; }
+        else if (successRate >= 75) { badge.textContent = 'جيد جداً'; badge.className = 'success-badge grade-good'; }
+        else if (successRate >= 50) { badge.textContent = 'جيد'; badge.className = 'success-badge grade-pass'; }
+        else { badge.textContent = 'يحتاج تحسين'; badge.className = 'success-badge grade-fail'; }
+    } else {
+        if (successRate >= 90) { badge.textContent = 'Excellent'; badge.className = 'success-badge grade-excellent'; }
+        else if (successRate >= 75) { badge.textContent = 'Very Good'; badge.className = 'success-badge grade-good'; }
+        else if (successRate >= 50) { badge.textContent = 'Good'; badge.className = 'success-badge grade-pass'; }
+        else { badge.textContent = 'Needs Improvement'; badge.className = 'success-badge grade-fail'; }
     }
 
-    // Initialize: shuffle questions and start timer on page load
-    window.addEventListener('DOMContentLoaded', () => {
-      shuffleQuestions();
-      startTimer();
+    document.getElementById('results-panel').classList.remove('hidden');
+    document.getElementById('results-panel').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('sendEmailBtn').classList.remove('hidden');
+}
+
+function sendResultsToEmail() {
+    const btn = document.getElementById('sendEmailBtn');
+    const status = document.getElementById('emailStatus');
+    btn.disabled = true;
+    btn.textContent = currentLang === 'ar' ? '⏳ جاري الإرسال...' : '⏳ Sending...';
+
+    const name = document.getElementById('studentName').value || 'N/A';
+    const studentClass = document.getElementById('studentClass').value || 'N/A';
+    const date = document.querySelector('input[type="text"]').value || new Date().toLocaleDateString();
+    const score = document.getElementById('res-total').textContent;
+    const successRate = document.getElementById('success-percent').textContent;
+
+    const PUBLIC_KEY = "Rb3Lq8tXaFmc5YHUH";
+    const SERVICE_ID = "service_w15m64i";
+    const TEMPLATE_ID = "template_5b0u2tq";
+    const TARGET_EMAIL = "mohammedhesham872@gmail.com";
+
+    emailjs.init(PUBLIC_KEY);
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+        to_email: TARGET_EMAIL, student_name: name, exam_date: date,
+        total_score: score, success_rate: successRate,
+        answers_table: `Score: ${score}, Rate: ${successRate}`
+    }).then(() => {
+        status.textContent = '✅ تم الإرسال بنجاح!';
+        status.style.color = '#059669';
+    }).catch(err => {
+        status.textContent = '❌ فشل الإرسال';
+        status.style.color = '#dc2626';
+        btn.disabled = false;
     });
-  </script>
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    renderExam();
+    startTimer();
+});
+</script>
 </body>
 </html>
